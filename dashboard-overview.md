@@ -2,7 +2,7 @@
 
 Copyright:
   Years: 2017
-lastupdated: "2017-07-13"
+lastupdated: "2017-09-07"
 ---
 
 {:new_window: target="_blank"}
@@ -11,34 +11,51 @@ lastupdated: "2017-07-13"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Dashboard Overview
+# Service Overview
 
-The service dashboard overview shows you information about your Bluemix Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for Connection Strings that you can use with tools or make use of tools to connect to your database.
+The _Overview_ page shows you information about your Bluemix Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for connection strings that you can use with tools or make use of tools to connect to your database.
 
 ## Deployment Details
 
-The Deployment Details panel shows details of your service.
+The _Deployment Details_ panel shows details of your service.
 
-### Database
+![Deployment Details](./images/deployment-details.png "A view of the Deployment Details panel")
 
-The type of database that is offered by the service; in this case `redis`.
+### Type
+
+The type of database that is offered by the service; in this case `Redis`.
+
+### Name
+
+An internal identifier for the service.
 
 ### Usage
 
-Shows the size of your database and the amount of storage provided by your service plan.
+The size of your database and the amount of storage provided by your service plan.
+
+### Version
+
+The database version that your service uses.
+
+### Scale Resouces
+
+If your service needs additional memory, or you want to reduce the amount of memory allocated to your service, you can do this by scaling resources. See [Scaling Resources](./dashboard-scaling-resources.html) for more details.
+
 
 ## Connecting
 
 There are two ways of connecting an external application to your database. You can either connect using a **Connection String** or with a **Command Line**. Both are provided on your service dashboard overview.
 
-### Connection String
+### HTTPS
 
-The **Connection String** can be used by some client libraries and contains all the information needed for other libraries to connect. You can find out how to use the Connection String to connect in [Connecting an external application](./connecting-external.html).
+The **HTTPS** connection string can be used by some client libraries and contains all the information needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](./connecting-external.html).
+
+**Please Note:** At this time this connection is **NOT** SSL/TLS secured. 
 
 ### Command Line
 
-The **Command Line** is a preformatted command which will invoke `redis-cli` with the correct parameters. To use it, you'll need to have the PostgreSQL client tools installed on the local system. You can find out more about how to do this in [Connecting an external application](./connecting-external.html).
+The **Command Line** is a preformatted command which will invoke `redis-cli` with the correct parameters. To use it, you'll need to have the Redis client tools installed on the local system. You can find out more about how to do this in [Connecting an external application](./connecting-external.html).
 
-### SSL Certificate
+**Please Note:**  This connection is **NOT** SSL/TLS secured. Redis does not support encryption.
 
-Your Compose Bluemix service provides you with an SSL certificate that you can use to connect to your database.
+
