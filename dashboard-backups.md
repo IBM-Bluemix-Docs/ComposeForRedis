@@ -22,6 +22,10 @@ Daily backups of your database are automatically scheduled. To view your existin
 
 ![Backups](./images/redis-backups-show.png "A list of backups in the service dashboard")
 
+Click on the corresponding row to expand the options for any available backup.
+
+![Backup Options](./images/redis-backups-options.png "Options for a backup.") 
+
 ## Creating a backup on demand
 
 As well as scheduled backups you can create a backup manually. To create a manual backup, navigate to the *Manage* page of your service dashboard and click *Backup now*.
@@ -42,3 +46,7 @@ You can use your {{site.data.keyword.composeForRedis}} backup to run a local cop
 2. We will need a Redis configuration file to start up the Redis instance, so you will want to copy a redis.conf file from your install into your db directory with the dump.rdb file. For example, if you installed Redis on OSX with homebrew, the redis.conf file is in `/usr/local/etc`, so from the db directory run, `cp /usr/local/etc/redis.conf .`
 3. Edit the configuration file to point to our current directory when it starts. Open redis.conf with a text editor and change the line `dir /usr/local/var/db/redis/` to `dir .`. Save the file and exit.
 4. Start the redis server in the db directory supplying the configuration file: `redis-server redis.conf`.
+
+## Restoring a backup
+
+To restore a backup to a new service instance, follow the steps to view existing backups, then click in the corresponding row to expand the options for the backup you want to download. Click on the **Restore** button. A message is displayed to let you know that a restore has been initiated. The new service instance will automatically be named "redis-restore-[timestamp]", and appears on your dashboard when provisioning starts.
