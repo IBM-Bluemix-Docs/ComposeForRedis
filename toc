@@ -11,14 +11,11 @@ Compose For Redis
 	The Service Dashboard
 		dashboard-overview.md
 		dashboard-backups.md
+		dashboard-settings.md
 	{: .navgroup-end}
 
 	{: .navgroup id="howto"}
-	dashboard-scaling-resources.md
-	dashboard-whitelists.md
-	dashboard-update-service-password.md	
-
-	{: .topicgroup}
+		{: .topicgroup}
 	Connecting to Compose for Redis
 		connecting-bluemix-app.md
 		connecting-external.md
