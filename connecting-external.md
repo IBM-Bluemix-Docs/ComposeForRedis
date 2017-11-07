@@ -51,6 +51,6 @@ Language|Library|Connection String Use
 ----------|----------|-----------
 Node|[ioredis](https://github.com/luin/ioredis)|[Yes](https://github.com/luin/ioredis#connect-to-redis)
 Ruby|[redis-rb](https://github.com/redis/redis-rb)|[Yes](http://www.rubydoc.info/github/redis/redis-rb/master/Redis%3Ainitialize)
-Java|[lettuce](https://github.com/mp911de/lettuce)|Yes- See [1](https://github.com/mp911de/lettuce/wiki/Redis-URI-and-connection-details), [2](http://redis.paluch.biz/docs/api/releases/latest/com/lambdaworks/redis/RedisClient.html)
+Java|[Lettuce](https://github.com/mp911de/lettuce)|Yes- See [1](https://github.com/mp911de/lettuce/wiki/Redis-URI-and-connection-details), [2](https://lettuce.io/core/release/api/io/lettuce/core/RedisClient.html)
 
 There is also a [Tour of the Redis stars](https://www.compose.com/articles/a-tour-of-the-redis-stars-2/) in Compose articles, the [Compose blog](https://www.compose.com/articles/) which looks at the recommended drivers for a wider range of languages in common use.
