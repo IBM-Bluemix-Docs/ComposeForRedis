@@ -14,7 +14,7 @@ lastupdated: "2017-06-07"
 # Connecting an external application
 {: #connecting-external-app}
 
-There are two ways of connecting an external application to {{site.data.keyword.composeForRedis}}:
+There are two ways of connecting an external application to {{site.data.keyword.composeForRedis_full}}:
 
 - A **Connection String** can be used by some client libraries and contains all the information needed for other libraries to connect; specifically the host name and the port.
 
