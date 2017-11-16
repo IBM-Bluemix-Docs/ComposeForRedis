@@ -2,7 +2,7 @@
 
 Copyright:
   Years: 2017
-lastupdated: "2017-09-07"
+lastupdated: "2017-11-15"
 ---
 
 {:new_window: target="_blank"}
@@ -50,4 +50,20 @@ The **Command Line** is a preformatted command which will invoke `redis-cli` wit
 
 **Please Note:**  This connection is **NOT** SSL/TLS secured. Redis does not support encryption.
 
+
+## Instance Administration API
+
+You can manage your {{site.data.keyword.composeForRedis}} service through the {{site.data.keyword.cloud_notm}} Compose API.
+
+### Foundation Endpoint
+
+The foundation endpoint is composed of the region the service resides in and the service instance id. It will be at the start of every endpoint.
+
+### Deployment ID
+
+The deployment ID is necessary for most calls, and identifies the specific deployment instance.
+
+### Reference
+
+For more documentation and reference for using the {{site.data.keyword.cloud_notm}} Compose API, across all {{site.data.keyword.cloud_notm}} Compose services, read [The {{site.data.keyword.cloud_notm}} Compose API](https://www.compose.com/articles/the-ibm-cloud-compose-api/).
 
