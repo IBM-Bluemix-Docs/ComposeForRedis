@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016,2017
-lastupdated: "2017-04-27"
+lastupdated: "2017-10-16"
 ---
 
 {:new_window: target="_blank"}
@@ -11,22 +11,39 @@ lastupdated: "2017-04-27"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Compose for Redis の概説
+# Getting started with Compose for Redis
 {: #getting-started-with-compose-for-redis}
 
-Redis は、オープン・ソースでインメモリー型のキー/値ストアです。Redis には値として、単純なストリング、ハッシュ、リスト、セットを格納したり、強力なビットマップ、hyperloglog、地理空間インデックスを格納したりできます。Redis は、アプリケーション・キャッシュまたは高速応答用データ・ストアに向いています。{{site.data.keyword.composeForRedis_full}} で提供する構成は、高可用性とディスク上での永続性のために事前調整されており、追加のセキュリティー機能によってすべてがロックダウンされます。
+Redis is an open source, in-memory, key-value store. Values in Redis can be simple strings, hashes, lists, and sets or powerful bitmaps, hyperloglogs, and geospatial indexes. Redis is ideal as an application cache or quick response data store. {{site.data.keyword.composeForRedis_full}} gives you a configuration that is pre-tuned for high availability and on-disk persistence, all locked down with extra security features.
 {:shortdesc}
 
-**注:** 2016 年 9 月 14 日より前にプロビジョンされた、現在もアクティブな Compose サービス・インスタンスは引き続き使用可能で、[https://www.compose.com/](https://www.compose.com) から直接アクセスできます。その時点以降にプロビジョンされた Compose サービス・インスタンスは、Bluemix アカウント内で直接アクセスして使用します。
+**Note:** Any Compose service instances that were provisioned before 14 September 2016 that are still active can still be used and directly accessed at [https://www.compose.com/](https://www.compose.com). Any Compose service instance that is provisioned from this point forward is directly accessed and used within your {{site.data.keyword.cloud}} account.
 
-{{site.data.keyword.composeForRedis}} の使用を開始するには、以下の手順を実行します。
+## Creating a Compose for Redis service instance
 
-1. [{{site.data.keyword.composeForRedis}} インスタンスを作成します](https://console.ng.bluemix.net/catalog/services/compose-for-redis/)。
+[Create a {{site.data.keyword.composeForRedis}} instance](https://console.ng.bluemix.net/catalog/services/compose-for-redis/).
 
-  サービスのインスタンスを作成するときは、必ずサービスの名前と資格情報名の両方を選択してください。サービスをバインドしないでおきます。サービスをプロビジョンするときに指定される資格情報を使用して、アプリケーションをサービスに接続できます。*使用可能な資格情報*セクションには、各種の資格情報値がリストされています。
+When you create an instance of the service, ensure that you choose both a name for your service and a credential name. Leave the service unbound; you can connect an application to your service later by using the credentials that are provided when the service is provisioned. The various credential values are listed in the *Available credentials* section.
 
-2. {{site.data.keyword.composeForRedis}} サービスに接続します。
+When you provision your {{site.data.keyword.composeForRedis}} instance you can choose the *Standard* or *Enterprise* plans. With the *Enterprise* plan, you can provision your {{site.data.keyword.composeForRedis}} instance into an available {{site.data.keyword.composeEnterprise}} cluster. {{site.data.keyword.composeEnterprise}} provides the security and isolation required by enterprise compliance and uses dedicated networking to ensure the performance of the deployed databases. See the [Compose Enterprise documentation](../ComposeEnterprise/index.html) for more details.
 
-  アプリケーションをサービスに接続するには、サービスと共に作成された[資格情報](./credentials.html)を使用します。サンプル・アプリケーションでは、Node.js を使用して {{site.data.keyword.composeForRedis}} サービスに接続する方法を示します。
+## Managing Compose for Redis
 
-  [compose-redis-helloworld-nodejs](https://github.com/IBM-Bluemix/compose-redis-helloworld-nodejs) サンプル・アプリケーションをダウンロードし、README ファイル内の指示に従ってください。そして、Bluemix 内のアプリケーション詳細ページで、**「アプリの表示 (View APP)」**をクリックします。
+You can manage your service from the service dashboard. Here you can find information about your {{site.data.keyword.cloud_notm}} Compose database and how to connect to it. You can also:
+- manage your backups
+- allocate more resources for your service
+- change the service password
+- use whitelists to restrict access to your databases. 
+For more information, see [Settings](./dashboard-settings.html).
+
+## Connecting to Compose for Redis
+
+You can connect to your service using the credentials that are created along with the service, or with the connection strings and command line that are provided in the *Overview* tab of your service dashboard.
+
+## Connecting an {{site.data.keyword.cloud_notm}} application to Compose for Redis
+
+To connect an {{site.data.keyword.cloud_notm}} application to your service, use the credentials that are created along with the service. You can find information on how to connect an {{site.data.keyword.cloud_notm}} application to a {{site.data.keyword.composeForRedis}} service in [Connecting an {{site.data.keyword.cloud_notm}} Application](./connecting-bluemix-app.html).
+
+## Connecting to Compose for Redis from outside {{site.data.keyword.cloud_notm}}
+
+If you want to connect to {{site.data.keyword.composeForRedis}} from outside {{site.data.keyword.cloud_notm}}, you can use the provided connection strings or command line. You can find information on how to connect in [Connecting an external application](./connecting-external.html).
