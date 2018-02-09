@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-07"
+  years: 2017, 2018
+lastupdated: "2018-01-22"
 ---
 
 {:new_window: target="_blank"}
@@ -17,31 +17,69 @@ lastupdated: "2017-06-07"
 There are two ways of connecting an external application to {{site.data.keyword.composeForRedis_full}}:
 
 - A **Connection String** can be used by some client libraries and contains all the information needed for other libraries to connect; specifically the host name and the port.
+  - TLS/SSL-enabled connections will have a "rediss:" prefix. Most languages have a driver that supports connecting your application with TLS/SSL. 
+  - Unencrypted connections will have a "redis:" prefix. This can be used when your drivers do not handle encryption and you are aware of the potential risks of unencrypted traffic. 
 
 - **Command Line** is a preformatted command which will invoke `redis-cli` with the correct parameters.
+  - There is no TLS/SSL support baked into the open source Redis, so the Redis command line utility, `redis-cli` can only use this connection with additional configuration.
+  - `redis-cli` can use an unencrypted connection natively, without additional configuration.
 
-You'll find both on the *Overview* page of your {{site.data.keyword.composeForRedis}} service.
+You'll find both the **Connection String** and the **Command Line** on the *Overview* page of your {{site.data.keyword.composeForRedis}} service.
+
 
 ## Connecting with the command line
 
-You will usually be using the `redis-cli` command to manually connect to the deployment - it's the most direct way to remotely work with your Redis installation. It comes as part of the Redis package, so you will need to have Redis installed locally to use it. On Mac OS X, a good way to get Redis is by using Homebrew.
+You will usually use the `redis-cli` command to manually connect to the deployment - it's the most direct way to remotely work with your Redis installation. It comes as part of the Redis package, so you will need to have installed locally to use it. You can download the source and compile it following the instructions on the [Redis download page](http://redis.io/download).
 
-1. Install [brew](http://brew.sh)
-2. Install redis with `brew install redis` to get up and running.
+### TLS/SSL enabled connections
+To use the `redis-cli` with an encypted connection set up a utility like `stunnel` to handle the encryption. The steps to set up [stunnel](https://www.stunnel.org/index.html) are:
 
-On Linux, refer to your distributions package manager for the latest build. If you are so inclined, you can [download the source](http://redis.io/download) and build it yourself. 
+1. Install stunnel
+    
+    Use your package manager for Linux, Homebrew for Mac, or grab a [download](https://www.stunnel.org/downloads.html) appropriate for your platform.
 
-Take the TCP Command Line and cut and paste it into your terminal like so:
+2. Add the information from the **Command Line** field to the stunnel.conf file
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    ```
+    
+    If your deployment has a self-signed certificate, you will need to add certificate information to the stunnel.conf file:
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    verify=2  
+    checkHost=sl-us-south-1-portal.7.dblayer.com 
+    CAfile=/path/to/redis/cert.crt
+    ```
+
+3. Run stunnel
+    
+    Type the `stunnel` command at the command-line. It will immediately run in the background.
+    
+4. Run `redis-cli` pointing to the local host and port, authenticate with the deployment's credentials.
+
+    ```shell
+    redis-cli -p 6830 -a <password>
+    ```
+
+### Unencrypted HTTP connections
+Take the string from the **Command Line** field and paste it into your terminal:
 ```shell
-$ redis-cli -h portal.brilliant-redis-41.compose-3.composedb.com -p 15639 -a secretpassword
-portal.brilliant-redis-41.compose-3.composedb.com:15639> set hello "world"
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
 OK
-portal.brilliant-redis-41.compose-3.composedb.com:15639> get hello
-"world"
-portal.brilliant-redis-41.compose-3.composedb.com:15639> 
-
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
 ```
 You can test your connection by running some simple Redis commands as shown. 
+
 
 ## Connecting with applications
 

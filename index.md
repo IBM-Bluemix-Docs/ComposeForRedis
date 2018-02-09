@@ -25,6 +25,8 @@ Redis is an open source, in-memory, key-value store. Values in Redis can be simp
 
 When you create an instance of the service, ensure that you choose both a name for your service and a credential name. Leave the service unbound; you can connect an application to your service later by using the credentials that are provided when the service is provisioned. The various credential values are listed in the *Available credentials* section.
 
+There is a drop-down to select TLS/SSL encryption. It is set to **True** encryption by default. If you select **False** then the service will be provisioned without encryption. This can be used when your drivers do not handle encryption and you are aware of the potential risks of unencrypted traffic. 
+
 When you provision your {{site.data.keyword.composeForRedis}} instance you can choose the *Standard* or *Enterprise* plans. With the *Enterprise* plan, you can provision your {{site.data.keyword.composeForRedis}} instance into an available {{site.data.keyword.composeEnterprise}} cluster. {{site.data.keyword.composeEnterprise}} provides the security and isolation required by enterprise compliance and uses dedicated networking to ensure the performance of the deployed databases. See the [Compose Enterprise documentation](../ComposeEnterprise/index.html) for more details.
 
 ## Managing Compose for Redis
