@@ -6,6 +6,7 @@ Compose For Redis
 
 	{: .navgroup id="learn"}
 	index.md
+	getting_started.md
 	pricing.md
 
 	{: .topicgroup}
