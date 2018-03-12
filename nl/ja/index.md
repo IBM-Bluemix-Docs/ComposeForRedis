@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2016,2017
+  years: 2016,2018
 lastupdated: "2017-10-16"
 ---
 
@@ -11,39 +11,41 @@ lastupdated: "2017-10-16"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Getting started with Compose for Redis
-{: #getting-started-with-compose-for-redis}
+# {{site.data.keyword.composeForRedis}} の概要
+{: #about-compose-for-redis}
 
-Redis is an open source, in-memory, key-value store. Values in Redis can be simple strings, hashes, lists, and sets or powerful bitmaps, hyperloglogs, and geospatial indexes. Redis is ideal as an application cache or quick response data store. {{site.data.keyword.composeForRedis_full}} gives you a configuration that is pre-tuned for high availability and on-disk persistence, all locked down with extra security features.
+Redis は、オープン・ソースでインメモリー型のキー/値ストアです。 Redis には値として、単純なストリング、ハッシュ、リスト、セットを格納したり、強力なビットマップ、hyperloglog、地理空間インデックスを格納したりできます。 Redis は、アプリケーション・キャッシュまたは高速応答用データ・ストアに向いています。 {{site.data.keyword.composeForRedis_full}} で提供する構成は、高可用性とディスク上での永続性のために事前調整されており、追加のセキュリティー機能によってすべてがロックダウンされます。
 {:shortdesc}
 
-**Note:** Any Compose service instances that were provisioned before 14 September 2016 that are still active can still be used and directly accessed at [https://www.compose.com/](https://www.compose.com). Any Compose service instance that is provisioned from this point forward is directly accessed and used within your {{site.data.keyword.cloud}} account.
+**注:** 2016 年 9 月 14 日より前にプロビジョンされた、現在もアクティブな Compose サービス・インスタンスは引き続き使用可能で、[https://www.compose.com/](https://www.compose.com) から直接アクセスできます。 その時点以降にプロビジョンされた Compose サービス・インスタンスは、{{site.data.keyword.cloud}} アカウント内で直接アクセスして使用されます。
 
-## Creating a Compose for Redis service instance
+## {{site.data.keyword.composeForRedis}} サービス・インスタンスの作成
 
-[Create a {{site.data.keyword.composeForRedis}} instance](https://console.ng.bluemix.net/catalog/services/compose-for-redis/).
+{{site.data.keyword.composeForRedis}} サービスは、{{site.data.keyword.cloud_notm}} カタログの [{{site.data.keyword.composeForRedis}} ページ](https://console.{DomainName}/catalog/services/compose-for-redis/)から作成できます。
 
-When you create an instance of the service, ensure that you choose both a name for your service and a credential name. Leave the service unbound; you can connect an application to your service later by using the credentials that are provided when the service is provisioned. The various credential values are listed in the *Available credentials* section.
+サービス名、およびサービスをプロビジョンする地域、組織、スペースを選択します。 **「データベースのバージョンの選択 (Select a database version)」**フィールドを使用して、データベースの使用できるバージョンを選択できます。
 
-When you provision your {{site.data.keyword.composeForRedis}} instance you can choose the *Standard* or *Enterprise* plans. With the *Enterprise* plan, you can provision your {{site.data.keyword.composeForRedis}} instance into an available {{site.data.keyword.composeEnterprise}} cluster. {{site.data.keyword.composeEnterprise}} provides the security and isolation required by enterprise compliance and uses dedicated networking to ensure the performance of the deployed databases. See the [Compose Enterprise documentation](../ComposeEnterprise/index.html) for more details.
+TLS /SSL 暗号化を選択するためのドロップダウンがあります。暗号化は、デフォルトでは **True** に設定されています。**False** を選択すると、サービスが暗号化なしでプロビジョンされます。これは、ドライバーが暗号化を処理できない場合に使用できますが、暗号化されないトラフィックにはリスクが潜んでいる可能性があることを意識しておく必要があります。 
 
-## Managing Compose for Redis
+{{site.data.keyword.composeForRedis}} インスタンスをプロビジョンするときには、*標準*プランか*エンタープライズ*・プランを選択できます。 *エンタープライズ*・プランでは、{{site.data.keyword.composeForRedis}} インスタンスを利用可能な {{site.data.keyword.composeEnterprise}} クラスターにプロビジョンできます。 {{site.data.keyword.composeEnterprise}} は、企業コンプライアンスで要求されるセキュリティーと分離を提供し、専用ネットワーキングを使用してデプロイ済みデータベースのパフォーマンスを確保します。 詳しくは、[Compose Enterprise 文書](../ComposeEnterprise/index.html)を参照してください。
 
-You can manage your service from the service dashboard. Here you can find information about your {{site.data.keyword.cloud_notm}} Compose database and how to connect to it. You can also:
-- manage your backups
-- allocate more resources for your service
-- change the service password
-- use whitelists to restrict access to your databases. 
-For more information, see [Settings](./dashboard-settings.html).
+## {{site.data.keyword.composeForRedis}} の管理
 
-## Connecting to Compose for Redis
+サービス・ダッシュボードからサービスを管理できます。 ダッシュボードには {{site.data.keyword.cloud_notm}} Compose データベースとそれへの接続方法に関する情報が示されます。 また、以下の操作を行うこともできます。
+- バックアップを管理する
+- サービスに割り振るリソースを増やす
+- サービス・パスワードを変更する
+- ホワイトリストを使用してデータベースへのアクセスを制限する。 
+詳しくは、[設定](./dashboard-settings.html)を参照してください。
 
-You can connect to your service using the credentials that are created along with the service, or with the connection strings and command line that are provided in the *Overview* tab of your service dashboard.
+## {{site.data.keyword.composeForRedis}} への接続
 
-## Connecting an {{site.data.keyword.cloud_notm}} application to Compose for Redis
+サービスに接続するには、サービスと一緒に作成された資格情報を使用するか、サービス・ダッシュボードの*「概要」*タブに表示される接続ストリングとコマンド・ラインを使用します。
 
-To connect an {{site.data.keyword.cloud_notm}} application to your service, use the credentials that are created along with the service. You can find information on how to connect an {{site.data.keyword.cloud_notm}} application to a {{site.data.keyword.composeForRedis}} service in [Connecting an {{site.data.keyword.cloud_notm}} Application](./connecting-bluemix-app.html).
+## {{site.data.keyword.composeForRedis}} への {{site.data.keyword.cloud_notm}} アプリケーションの接続
 
-## Connecting to Compose for Redis from outside {{site.data.keyword.cloud_notm}}
+{{site.data.keyword.cloud_notm}} アプリケーションをサービスに接続するには、サービスと一緒に作成された資格情報を使用します。 {{site.data.keyword.cloud_notm}} アプリケーションを {{site.data.keyword.composeForRedis}} サービスに接続する方法については、[{{site.data.keyword.cloud_notm}} アプリケーションの接続](./connecting-bluemix-app.html)を参照してください。
 
-If you want to connect to {{site.data.keyword.composeForRedis}} from outside {{site.data.keyword.cloud_notm}}, you can use the provided connection strings or command line. You can find information on how to connect in [Connecting an external application](./connecting-external.html).
+## {{site.data.keyword.cloud_notm}}
+
+ 外からの {{site.data.keyword.composeForRedis}} への接続{{site.data.keyword.composeForRedis}} に {{site.data.keyword.cloud_notm}} の外部から接続するには、提供された接続ストリングまたはコマンド・ラインを使用します。 接続方法については、[外部アプリケーションの接続](./connecting-external.html)を参照してください。

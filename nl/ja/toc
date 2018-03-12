@@ -6,9 +6,11 @@ Compose For Redis
 
 	{: .navgroup id="learn"}
 	index.md
+	getting_started.md
+	pricing.md
 
 	{: .topicgroup}
-	The Service Dashboard
+	サービス・ダッシュボード
 		dashboard-overview.md
 		dashboard-backups.md
 		dashboard-settings.md
@@ -16,7 +18,7 @@ Compose For Redis
 
 	{: .navgroup id="howto"}
 		{: .topicgroup}
-	Connecting to Compose for Redis
+	Compose for Redis への接続
 		connecting-bluemix-app.md
 		connecting-external.md
 	{: .navgroup-end}

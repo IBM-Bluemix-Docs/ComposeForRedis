@@ -1,8 +1,8 @@
 ---
 
 Copyright:
-  Years: 2017
-lastupdated: "2017-10-23"
+  years: 2017,2018
+lastupdated: "2017-11-20"
 ---
 
 {:new_window: target="_blank"}
@@ -12,71 +12,70 @@ lastupdated: "2017-10-23"
 {:pre: .pre}
 {:tip: .tip}
 
-# Settings
+# 設定
 
-These features allow you to adapt your {{site.data.keyword.composeForRedis_full}} service to better suit your needs and requirements.
-
-
-## Upgrade Version
-
-If there is a new version of the database available, a drop-down menu appears, allowing you to select which version you would like to upgrade to. Otherwise, your service is on the newest version available, and the panel displays the current version information.
-
-![The Version panel](./images/redis-version-show.png "The Version panel")
+これらの機能を使用すると、ユーザーのニーズと条件により適合するように {{site.data.keyword.composeForRedis_full}} サービスを調整できます。
 
 
-## Scaling Resources
+## バージョンのアップグレード
 
-If your service needs additional memory, or you want to reduce the amount of memory allocated to your service, you can do this by scaling resources.
+新バージョンのデータベースが使用可能な場合は、ドロップダウン・メニューが表示され、どのバージョンにアップグレードするかを選択できます。 そうでない場合、現在のサービスは使用可能な最新バージョンを使用しており、現行バージョンの情報がパネルに表示されます。
 
-1. Navigate to your service's dashboard overview page.
-2. In the _Deployment Details_ pane, click **Scale Resources**. The Scale Resouces page opens.
-    ![The Scale Resources page](./images/redis-scale-show.png "The Scale Resources page")
-3. Adjust the slider to raise or lower the memory allocated to the {{site.data.keyword.composeForRedis}} service. Move the slider to the left to reduce the amount of memory, or move it to the right to increase the memory.
-4. Click **Scale Deployment** to trigger the rescaling and return to the dashboard overview. The _Deployment Details_ pane contains details of the rescaling job that is now in progress:
-
-    ![The Deployment Details pane, showing one running job](./images/jobs_scaling.png "The Deployment Details pane, showing one running job: scaling database to 2 units")
-
-    When the scaling is complete the _Deployment Details_ pane updates to show the current usage and the new value for the available memory.
+![「バージョン」パネル](./images/redis-version-show.png "「バージョン」パネル")
 
 
-## Change Password
+## リソースの拡大縮小
 
-You might find it necessary to change the password of your service. You can do so using _Update Password_. 
+サービスが追加メモリーを必要とする場合や、サービスに割り振られたメモリー量を減らす場合は、リソースを拡大縮小することによって行えます。
 
-A new, randomly generated password will appear, or you can type your own password into the field. To regenerate another password, click on the dice to the right of the field. 
+1. サービスのダッシュボードの概要ページにナビゲートします。
+2. _「デプロイメントの詳細 (Deployment Details)」_ペインで、**「リソースのスケール (Scale Resources)」**をクリックします。 「リソースのスケール (Scale Resources)」ページが開きます。![「リソースのスケール (Scale Resources)」ページ](./images/redis-scale-show.png "「リソースのスケール (Scale Resources)」ページ")
+3. スライダーを調整して、{{site.data.keyword.composeForRedis}} サービスに割り振るメモリーを増減できます。 スライダーを左に移動するとメモリー量が減り、右に移動するとメモリーが増えます。
+4. **「デプロイメントの拡大縮小 (Scale Deployment)」**をクリックしてスケール変更をトリガーし、ダッシュボードの概要に戻ります。
+
+スケーリングが完了すると、_「デプロイメントの詳細 (Deployment Details)」_ペインが更新され、メモリーの現在の使用量と使用可能な量を示す新しい値が表示されます。
+
+
+## パスワードの変更
+
+サービスのパスワードを変更しなければならないことがあります。 そのためには、_「パスワードの変更 (Update Password)」_を使用します。 
+
+ランダムに生成された新しいパスワードが表示されます。あるいは、独自のパスワードをフィールドに入力することもできます。 別のパスワードを再生成するには、フィールドの右側にあるダイスをクリックします。 
   
-![Updating the Redis password](./images/redis-update-password.png "The automatic password generator")
+![Redis のパスワードの更新](./images/redis-update-password.png "自動パスワード生成プログラム")
 
-The changes take effect when you click on the **Update Password** button. This will change the credentials that you and your services use to connect and is a part of your service's connection string. The _Deployment Details_ pane will show the progress of the running job.
+**「パスワードの更新 (Update Password)」**をクリックします。 変更を確認するよう求められます。 ダイアログの**「パスワードの更新 (Update Password)」**をクリックして新規パスワードを確定させるか、キャンセルして変更を取り消します。_「デプロイメントの詳細 (Deployment Details)」_ペインに、実行中のジョブの進行状況が表示されます。
 
-### Updating Connected Applications
+**注:** パスワードを変更すると、ユーザーとサービスが接続で使用する資格情報が変更され、サービスの接続ストリングが無効になります。ダウン時間が発生することもあります。
 
-Changing the password will invalidate the existing connection string and generate a new one. This will cause a service interruption until connected applications are updated with the new connection string. You will have to do this by suppling the new connection string to your applications.
+### 接続されたアプリケーションの更新
 
-More information on connecting your applications is in [Connecting an {{site.data.keyword.cloud}} Application](./connecting-bluemix-app.html).
-and [Connecting an external application](./connecting-external.html).
+パスワードを変更すると、既存の接続ストリングが無効になり、新しいパスワードが生成されます。 そのため、新しい接続ストリングで接続アプリケーションを更新するまで、サービスが中断します。 更新するためには、新しい接続ストリングをアプリケーションに指定する必要があります。
+
+アプリケーションの接続方法について詳しくは、[{{site.data.keyword.cloud}} アプリケーションの接続](./connecting-bluemix-app.html)
+と[外部アプリケーションの接続](./connecting-external.html)に記載しています。
 
 
-## Using Whitelists
+## ホワイトリストの使用
 
-If you want to restrict access to your databases, you can whitelist specific IP addresses or ranges of IP addresses on your service. When there are no IP addresses in the whitelist, the whitelist is disabled and the deployment will accept connections from any system on the internet.
+データベースへのアクセスを制限するには、サービスの特定の IP アドレスまたは IP アドレスの範囲をホワイトリストに登録します。 ホワイトリスト内に IP アドレスが存在しない場合、ホワイトリストは無効化され、デプロイメントはインターネット上のすべてのシステムからの接続を受け入れます。
 
-![Whitelisting IPs](./images/redis-whitelist-show.png "The whitelist fields.")
+![ IP のホワイトリストへの登録](./images/redis-whitelist-show.png "ホワイトリストのフィールド。")
 
-### IP Addresses
-The *IP* field can take a single complete IPv4 address or IPv6 address with or without a netmask. Without a netmask, incoming connections must come from exactly that IP address. 
+### IP アドレス
+*「IP」*フィールドには、単一の完全な IPv4 アドレスまたは IPv6 アドレス (ネットマスクは付けても付けなくてもかまいません) を指定できます。 ネットマスクを付けない場合、着信接続は、正確にその IP アドレスからの接続でなければなりません。 
 
-Note that although the IP entry allows for IPv6, no Compose deployments are currently available to IPv6 networking and so these addresses cannot be filtered on.
+IP エントリーには IPv6 を使用できますが、IPv6 ネットワーキングに使用できる Compose デプロイメントは現在ありません。そのため、これらのアドレスをフィルターに掛けることはできません。
 
-### Netmasks
-To allow a connection from a specified range of IP addresses, use a netmask. The IP address must be fully specified when using a netmask. That means entering, for example, 192.168.1.0/24 rather than 192.168.1/24.
+### ネットマスク
+指定した範囲の IP アドレスからの接続を許可するには、ネットマスクを使用します。 ネットマスクを使用する場合、IP アドレスを完全に指定する必要があります。 これは、例えば、192.168.1/24 ではなく 192.168.1.0/24 と入力することを意味します。
 
-### Description
-The *Description* can be any user-significant text for identifying the whitelist entry - a customer name, project identifier or employee number, for example. The description field is required.
+### 説明
+*「説明」*は、ホワイトリスト・エントリーを識別するための、ユーザーにとって意味のある任意のテキスト (例えば、顧客名、プロジェクト ID、従業員番号など) にすることができます。 記述フィールドは必須です。
 
-### Compose Services
-Whitelist entries are automatically added to Compose's servers to allow them to connect.
+### Compose サービス
+ホワイトリストのエントリーは Compose サービスに自動的に追加され、接続を許可されるようになります。
 
-### Removal
-To remove an IP address or netmask from the Whitelist, click the *Remove* entry displayed next to it.
-When all entries on the whitelist are removed, the whitelist will be disabled and all IP addresses will be accepted by the TCP access portals.
+### 削除
+ホワイトリストから IP アドレスまたはネットマスクを削除するには、その横に表示される *「削除 (Remove)」*エントリーをクリックします。
+ホワイトリストのエントリーをすべて削除すると、ホワイトリストが無効になり、すべての IP アドレスが TCP アクセス・ポータルに受け入れられるようになります。

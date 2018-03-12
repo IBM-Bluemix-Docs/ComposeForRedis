@@ -1,8 +1,8 @@
 ---
 
 Copyright:
-  Years: 2017
-lastupdated: "2017-09-07"
+  years: 2017,2018
+lastupdated: "2017-11-20"
 ---
 
 {:new_window: target="_blank"}
@@ -11,43 +11,59 @@ lastupdated: "2017-09-07"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Service Overview
+# サービス概要
 
-The _Overview_ page shows you information about your {{site.data.keyword.cloud}} Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for connection strings that you can use with tools or make use of tools to connect to your database.
+{{site.data.keyword.cloud}} Compose データベースに関する情報は_「概要」_ページに表示されます。 概要には、必要不可欠な識別情報と現在のリソース使用率が含まれます。 ツールで使用する接続ストリングのセクションもあります。接続ストリングを使用してツールからデータベースに接続することもできます。
 
-## Deployment Details
+## デプロイメントの詳細
 
-The _Deployment Details_ panel shows details of your service.
+_「デプロイメントの詳細 (Deployment Details)」_パネルには、サービスの詳細が表示されます。
 
-![Deployment Details](./images/redis-deployment-details.png "A view of the Deployment Details panel")
+![デプロイメントの詳細](./images/redis-deployment-details.png "「デプロイメントの詳細 (Deployment Details)」パネル")
 
-### Type
+### タイプ
 
-The type of database that is offered by the service, and the database version that your service uses.
+サービスによって提供されるデータベースのタイプ、およびサービスが使用するデータベースのバージョン。 より新しいバージョンのデータベースが利用可能な場合は、通知が表示され、サービス・ダッシュボードの[「バージョンのアップグレード」](/docs/services/ComposeForRedis/dashboard-settings.html#upgrade-version)セクションへのリンクが示されます。
 
-### Name
+### 名前
 
-An internal identifier for the service.
+サービスの内部 ID。
 
-### Usage
+### 使用法
 
-The size of your database and the amount of storage provided by your service plan.
+データベース・サイズとご使用のサービス・プランで利用可能なストレージ容量。
 
+## 現行ジョブ
 
-## Connecting
+サービスに関する管理上の変更 (スケーリングや手動バックアップなど) を行うと、ジョブが開始されます。ジョブの実行中に、_「概要 (Overview)」_ページに_「現行ジョブ (Current Jobs)」_パネルが表示され、ジョブ名と進行状況表示バーが示されます。 ジョブが完了すると、_「現行ジョブ (Current Jobs)」_パネルは_「概要 (Overview)」_ページに表示されなくなります。
 
-There are two ways of connecting an external application to your database. You can either connect using a **Connection String** or with a **Command Line**. Both are provided on your service dashboard overview.
+## 接続
+
+外部アプリケーションをデータベースに接続する方法は 2 つあります。 **接続ストリング**を使用するか、または**コマンド・ライン**を使用して接続できます。 どちらもサービス・ダッシュボードの概要に表示されます。
 
 ### HTTPS
 
-The **HTTPS** connection string can be used by some client libraries and contains all the information needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](./connecting-external.html).
+**HTTPS** 接続ストリングは、いくつかのクライアント・ライブラリーで使用でき、他のライブラリーが接続するために必要なすべての情報を含んでいます。 接続ストリングを使用して接続する方法については、[外部アプリケーションの接続](./connecting-external.html)を参照してください。
 
-**Please Note:** At this time this connection is **NOT** SSL/TLS secured. 
+**注:** サービスのプロビジョン時に TLS/SSL 対応のボックスにチェック・マークを付けなかった場合、この接続は TLS/SSL で保護**されていません**。 
 
-### Command Line
+### コマンド・ライン
 
-The **Command Line** is a preformatted command which will invoke `redis-cli` with the correct parameters. To use it, you'll need to have the Redis client tools installed on the local system. You can find out more about how to do this in [Connecting an external application](./connecting-external.html).
+**コマンド・ライン**は、正しいパラメーターを使用して `redis-cli` を呼び出すために予め形式設定されたコマンドです。 使用するには、Redis クライアント・ツールをローカル・システムにインストールする必要があります。 その方法については、 [外部アプリケーションの接続](./connecting-external.html)を参照してください。
 
-**Please Note:**  This connection is **NOT** SSL/TLS secured. Redis does not support encryption.
+## インスタンス管理 API
 
+{{site.data.keyword.composeForRedis}} サービスは {{site.data.keyword.cloud_notm}} Compose API で管理できます。
+
+### ファウンデーション・エンドポイント
+
+ファウンデーション・エンドポイントは、サービスが存在する地域とサービス・インスタンス ID で構成されます。これは、すべてのエンドポイントの先頭に配置されます。
+
+### デプロイメント ID
+
+デプロイメント ID はほとんどの呼び出しで必要であり、特定のデプロイメント・インスタンスを識別します。
+
+### 参照
+
+{{site.data.keyword.cloud_notm}} Compose サービス全体にわたる {{site.data.keyword.cloud_notm}} Compose API の使用についての詳しい資料やリファレンスは、[ {{site.data.keyword.cloud_notm}} Compose API](https://www.compose.com/articles/the-ibm-cloud-compose-api/) を参照してください。
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-07"
+  years: 2017, 2018
+lastupdated: "2018-01-22"
 ---
 
 {:new_window: target="_blank"}
@@ -17,31 +17,69 @@ lastupdated: "2017-06-07"
 Es gibt zwei Möglichkeiten, eine externe Anwendung mit {{site.data.keyword.composeForRedis_full}} zu verbinden:
 
 - Eine **Verbindungszeichenfolge** kann von bestimmten Clientbibliotheken verwendet werden und enthält alle Informationen, die andere Bibliotheken zum Herstellen einer Verbindung benötigen, insbesondere den Hostnamen und den Port.
+  - Verbindungen, für die TLS/SSL aktiviert ist, sind mit einem Präfix "rediss:" gekennzeichnet. Die meisten Sprachen haben einen Treiber, der die Verbindung Ihrer Anwendung mit TLS/SSL unterstützt. 
+  - Nicht verschlüsselte Verbindungen sind mit einem Präfix "redis:" gekennzeichnet. Dies kann verwendet werden, wenn Ihr Treiber die Verschlüsselung nicht unterstützt und Ihnen die potenziellen Risiken beim unverschlüsselten Datenverkehr bekannt sind. 
 
-- Die **Befehlszeile** ist ein vorformatierter Befehl, der `redis-cli` mit den korrekten Parametern aufruft. 
+- Die **Befehlszeile** ist ein vorformatierter Befehl, der `redis-cli` mit den korrekten Parametern aufruft.
+  - Open-Source-Redis umfasst keine TLS/SSL-Unterstützung, sodass das Redis-Befehlszeilendienstprogramm `redis-cli` diese Verbindung nur mit zusätzlicher Konfiguration verwenden kann.
+  - `redis-cli` kann eine nicht verschlüsselte Verbindung ohne zusätzliche Konfiguration nativ verwenden.
 
-Beides finden Sie auf der Seite *Übersicht* Ihres {{site.data.keyword.composeForRedis}}-Service.
+Sie finden sowohl die **Verbindungszeichenfolge** als auch die **Befehlszeile** auf der Seite *Übersicht* Ihres {{site.data.keyword.composeForRedis}}-Service.
+
 
 ## Verbindung über die Befehlszeile herstellen
 
-In der Regel verwenden Sie den Befehl `redis-cli`, um eine manuelle Verbindung zu der Bereitstellung herzustellen. Das ist die direkteste Möglichkeit, über Fernzugriff mit Ihrer Redis-Installation zu arbeiten. Da er im Redis-Paket enthalten ist, müssen Sie Redis lokal installieren, um ihn verwenden zu können. Unter Mac OS X können Sie Redis gut abrufen, indem Sie Homebrew verwenden.
+In der Regel verwenden Sie den Befehl `redis-cli`, um eine manuelle Verbindung zur Bereitstellung herzustellen. Das ist die direkteste Möglichkeit, über Fernzugriff mit Ihrer Redis-Installation zu arbeiten. Da der Befehl im Redis-Paket enthalten ist, müssen Sie Redis lokal installieren, um ihn verwenden zu können. Anhand der Anweisungen auf der [Redis-Downloadseite](http://redis.io/download) können Sie die Quelle herunterladen und kompilieren.
 
-1. Installieren Sie [brew](http://brew.sh).
-2. Installieren Sie Redis mit dem Befehl `brew install redis`, um betriebsbereit zu sein.
+### Für TLS/SSL aktivierte Verbindungen
+Wenn Sie `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen, richten Sie ein Dienstprogramm wie `stunnel` ein, das die Verschlüsselung  handhaben kann. Die Schritte zum Einrichten von [stunnel](https://www.stunnel.org/index.html) sind:
 
-Wenden Sie sich unter Linux an Ihren Verteilerpaketmanager, um den neuesten Build zu erhalten. Wenn Sie entsprechende Begabungen haben, können Sie auch die [Quelle herunterladen](http://redis.io/download) und den Build selbst erstellen. 
+1. stunnel installieren
+    
+    Verwenden Sie Ihren Paketmanager für Linux, Homebrew für Mac oder wählen Sie einen [Download](https://www.stunnel.org/downloads.html) für Ihre jeweilige Plattform.
 
-Nehmen Sie die TCP-Befehlszeile, schneiden Sie sie aus und fügen Sie sie in Ihr Terminal ein. Das geht wie folgt:
+2. Die Informationen aus dem Feld **Befehlszeile** in die stunnel.conf-Datei einfügen
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    ```
+    
+    Wenn Ihre Bereitstellung über ein selbst signiertes Zertifikat verfügt, müssen Sie die Zertifikatsinformationen in die stunnel.conf-Datei einfügen:
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    verify=2  
+    checkHost=sl-us-south-1-portal.7.dblayer.com 
+    CAfile=/path/to/redis/cert.crt
+    ```
+
+3. stunnel ausführen
+    
+    Geben Sie den `stunnel`-Befehl in der Befehlszeile ein. Das Programm wird sofort im Hintergrund ausgeführt.
+    
+4. `redis-cli` mit Zeiger auf den lokalen Host und Port ausführen und mit Berechtigungsnachweise der Bereitstellung authentifizieren.
+
+    ```shell
+    redis-cli -p 6830 -a <password>
+    ```
+
+### Nicht verschlüsselte HTTP-Verbindungen
+Verwenden Sie die Zeichenfolge aus dem Feld **Befehlszeile** und fügen Sie sie in Ihrem Terminal ein:
 ```shell
-$ redis-cli -h portal.brilliant-redis-41.compose-3.composedb.com -p 15639 -a secretpassword
-portal.brilliant-redis-41.compose-3.composedb.com:15639> set hello "world"
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
 OK
-portal.brilliant-redis-41.compose-3.composedb.com:15639> get hello
-"world"
-portal.brilliant-redis-41.compose-3.composedb.com:15639>
-
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
 ```
-Sie können Ihre Verbindung testen, indem Sie einige einfache Redis-Befehle wie angezeigt ausführen.
+Sie können Ihre Verbindung testen, indem Sie einige einfache Redis-Befehle wie angezeigt ausführen. 
+
 
 ## Verbindung mit Anwendungen herstellen
 

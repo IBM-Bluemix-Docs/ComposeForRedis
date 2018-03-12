@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-07"
+  years: 2017, 2018
+lastupdated: "2018-01-22"
 ---
 
 {:new_window: target="_blank"}
@@ -17,31 +17,71 @@ lastupdated: "2017-06-07"
 將外部應用程式連接至 {{site.data.keyword.composeForRedis_full}} 的方式有兩種：
 
 - **連線字串**可由某些用戶端程式庫使用，且包含其他程式庫進行連接時所需的一切資訊；尤其是主機名稱及埠。
+  - 已啟用 TLS/SSL 的連線將具有 "rediss:" 字首。大部分語言都有一個驅動程式，可支援利用 TLS/SSL 連接您的應用程式。 
+  - 未加密的連線將具有 "redis:" 字首。當您的驅動程式無法處理加密，且您知道未加密資料流量的潛在風險時，就可以使用此項。 
 
 - **指令行**是一個預先格式化的指令，它會使用正確的參數來呼叫 `redis-cli`。
+  - 開放程式碼 Redis 沒有 TLS/SSL 支援，因此 Redis 指令行公用程式 `redis-cli` 只能使用此連線與其他配置搭配。
+  - `redis-cli` 本質上可以使用未加密的連線，無需其他配置。
 
-您將在 {{site.data.keyword.composeForRedis}} 服務的*概觀* 頁面上找到這兩者。
+您將在 {{site.data.keyword.composeForRedis}} 服務的*概觀* 頁面上找到**連線字串**及**指令行**。
+
 
 ## 使用指令行連接
 
-通常您將使用 `redis-cli` 指令手動連接至部署 - 這是遠端使用 Redis 安裝的最直接方式。它是 Redis 套件的一部分，所以您必須在本端安裝 Redis，才能使用它。在 Mac OS X 上，取得 Redis 的好方法是使用 Homebrew。
+通常您將使用 `redis-cli` 指令手動連接至部署 - 這是遠端使用 Redis 安裝的最直接方式。它是 Redis 套件的一部分，所以您必須在本端安裝，才能使用它。您可以遵循 [Redis 下載頁面](http://redis.io/download)上的指示，下載原始檔並加以編譯。
 
-1. 安裝 [brew](http://brew.sh)
-2. 使用 `brew install redis` 來安裝 Redis，以開始進行。
+### 已啟用 TLS/SSL 的連線
+若要使用 `redis-cli` 與加密的連線搭配，請設定一個公用程式（如 `stunnel`）來處理加密。設定 [stunnel](https://www.stunnel.org/index.html) 的步驟如下：
 
-在 Linux 上，請參照您的配送套件管理程式，以取得最新的建置。如果您要這麼做，可以[下載原始檔](http://redis.io/download)並自行建置。 
+1. 安裝 stunnel
+    
+    使用 Linux、Homebrew for Mac 適用的套件管理程式，或抓取平台適用的[下載](https://www.stunnel.org/downloads.html)。
 
-採用「TCP 指令行」，然後將它剪下並貼至您的終端機，如下所示：
+2. 將**指令行**欄位中的資訊新增至 stunnel.conf 檔案
+    
+    ```text
+    [redis-cli]
+    client=yes
+    accept=127.0.0.1:6830
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    ```
+    
+    如果您的部署具有自簽憑證，則需要將憑證資訊新增至 stunnel.conf 檔案：
+    
+    ```text
+    [redis-cli]
+    client=yes
+    accept=127.0.0.1:6830
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    verify=2
+    checkHost=sl-us-south-1-portal.7.dblayer.com
+    CAfile=/path/to/redis/cert.crt
+    ```
+
+3. 執行 stunnel
+    
+    在指令行中鍵入 `stunnel` 指令。它將立即在背景中執行。
+    
+4. 執行指向本端主機及埠的 `redis-cli`，利用部署的認證進行鑑別。
+
+    ```shell
+    redis-cli -p 6830 -a <password>
+    ```
+
+### 未加密的 HTTP 連線
+從**指令行**欄位中取得字串，然後將它貼入您的終端機中：
 ```shell
-$ redis-cli -h portal.brilliant-redis-41.compose-3.composedb.com -p 15639 -a secretpassword
-portal.brilliant-redis-41.compose-3.composedb.com:15639> set hello "world"
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
 OK
-portal.brilliant-redis-41.compose-3.composedb.com:15639> get hello
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
 "world"
-portal.brilliant-redis-41.compose-3.composedb.com:15639> 
-
 ```
 您可以執行某些簡單的 Redis 指令來測試連線，如下所示。
+
+ 
+
 
 ## 使用應用程式連接
 

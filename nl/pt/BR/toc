@@ -6,6 +6,8 @@ Compose For Redis
 
 	{: .navgroup id="learn"}
 	index.md
+	getting_started.md
+	pricing.md
 
 	{: .topicgroup}
 	O Painel de serviço
@@ -15,7 +17,7 @@ Compose For Redis
 	{: .navgroup-end}
 
 	{: .navgroup id="howto"}
-	{: .topicgroup}
+		{: .topicgroup}
 	Conectando-se ao Compose for Redis
 		connecting-bluemix-app.md
 		connecting-external.md

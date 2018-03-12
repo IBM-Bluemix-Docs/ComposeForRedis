@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017
+  years: 2017,2018
 lastupdated: "2017-07-13"
 ---
 
@@ -11,42 +11,52 @@ lastupdated: "2017-07-13"
 {:codeblock: .codeblock}
 {:pre: .pre}
 
-# Backups
+# バックアップ
 {: #backups}
 
-You can create and download backups from the *Manage* page of your service dashboard. Both scheduled and manual backups are available.
+サービス・ダッシュボードの_「管理」_ページの_「バックアップ (Backups)」_タブから、バックアップの作成とダウンロードを行えます。 日次、週次、月次、オンデマンドでのバックアップを使用できます。 これらは、以下のスケジュールに従って保持されます。
 
-## Viewing existing backups
+バックアップ・タイプ|保持スケジュール
+----------|-----------
+日次|日次バックアップは 7 日間保持されます
+週次|週次バックアップは 4 週間保持されます
+月次|月次バックアップは 3 カ月保持されます
+オンデマンド|オンデマンド・バックアップは 1 つ保持されます。 保持されるバックアップは、常に最新のオンデマンド・バックアップです。
+{: caption="表 1. バックアップ保持スケジュール" caption-side="top"}
 
-Daily backups of your database are automatically scheduled. To view your existing backups, navigate to the *Manage* page of your service dashboard. 
+バックアップ・スケジュールと保持ポリシーは固定されています。 保持スケジュールで許可されているよりも多くのバックアップを保持する必要がある場合は、バックアップをダウンロードし、ビジネス要件に従ってアーカイブを保持する必要があります。
 
-![Backups](./images/redis-backups-show.png "A list of backups in the service dashboard")
+## 既存のバックアップの表示
 
-Click on the corresponding row to expand the options for any available backup.
+データベースの日次バックアップは自動的にスケジュールされます。 既存のバックアップを表示するには、サービス・ダッシュボードの*「管理」*ページに移動します。 
 
-![Backup Options](./images/redis-backups-options.png "Options for a backup.") 
+![バックアップ](./images/redis-backups-show.png "サービス・ダッシュボードのバックアップのリスト")
 
-## Creating a backup on demand
+対応する行をクリックして、選択可能バックアップのオプションを展開します。
 
-As well as scheduled backups you can create a backup manually. To create a manual backup, navigate to the *Manage* page of your service dashboard and click *Backup now*.
+![バックアップのオプション](./images/redis-backups-options.png "バックアップのオプション。") 
 
-## Downloading a backup
+## オンデマンドでのバックアップ作成
 
-To download a backup, navigate to the *Manage* page of your service dashboard and click *Download* in the corresponding row for the backup you wish to download.
+スケジュールされたバックアップだけでなく、バックアップを手作業で作成することができます。 手動でバックアップを作成する場合は、サービス・ダッシュボードの*「管理」*ページに移動して、*「今すぐバックアップ」*をクリックします。
 
-## Backup contents
+## バックアップのダウンロード
 
-Redis saves a binary snapshot of your data by default. The dump.rdb file can then be used as a backup for point-in-time recovery. To make the snapshot Redis forks, so that all of the work for the snapshot is done by the child process while the parent process continues handling your data as normal. The backup process doesn't affect your application or database. You are able to both download a copy of your backups, or restore them directly into a new deployment.
+バックアップをダウンロードするには、サービス・ダッシュボードの*「管理」*ページに移動し、ダウンロードするバックアップに対応する行で*「ダウンロード」*をクリックします。
 
-## Using a backup with a local database
+## バックアップの内容
 
-You can use your {{site.data.keyword.composeForRedis}} backup to run a local copy of your database.
+Redis は、デフォルトでデータのバイナリーのスナップショットを保存します。 dump.rdb ファイルをポイント・イン・タイム・リカバリーのバックアップとして使用できます。 スナップショットは Redis で fork されるので、親プロセスが通常どおりにデータを処理している間に、子プロセスがスナップショットの処理をすべて実行します。 バックアップ・プロセスはアプリケーションにもデータベースにも影響を与えません。 バックアップのコピーをダウンロードすることも、新しいデプロイメントに直接復元することもできます。
 
-1. Move your dump.rdb file into it's own directory, say 'db'.
-2. We will need a Redis configuration file to start up the Redis instance, so you will want to copy a redis.conf file from your install into your db directory with the dump.rdb file. For example, if you installed Redis on OSX with homebrew, the redis.conf file is in `/usr/local/etc`, so from the db directory run, `cp /usr/local/etc/redis.conf .`
-3. Edit the configuration file to point to our current directory when it starts. Open redis.conf with a text editor and change the line `dir /usr/local/var/db/redis/` to `dir .`. Save the file and exit.
-4. Start the redis server in the db directory supplying the configuration file: `redis-server redis.conf`.
+## ローカル・データベースでのバックアップの使用
 
-## Restoring a backup
+{{site.data.keyword.composeForRedis}} バックアップを使用して、データベースのローカル・コピーを実行できます。
 
-To restore a backup to a new service instance, follow the steps to view existing backups, then click in the corresponding row to expand the options for the backup you want to download. Click on the **Restore** button. A message is displayed to let you know that a restore has been initiated. The new service instance will automatically be named "redis-restore-[timestamp]", and appears on your dashboard when provisioning starts.
+1. dump.rdb ファイルを 'db' などの独自のディレクトリーに移動します。
+2. Redis インスタンスを開始するために Redis 構成ファイルが必要であるため、dump.rdb ファイルのあるディレクトリーに、インストール環境から redis.conf ファイルをコピーします。 例えば、OSX に homebrew を使用して Redis をインストールした場合、redis.conf ファイルは `/usr/local/etc` にあるので、db ディレクトリーから `cp /usr/local/etc/redis.conf .` を実行します。
+3. 開始時の現行ディレクトリーを指すように構成ファイルを編集します。 テキスト・エディターで redis.conf を開き、`dir /usr/local/var/db/redis/` という行を `dir .` に変更します。 ファイルを保存して終了します。
+4. db ディレクトリーで構成ファイルを指定して redis サーバーを開始します (`redis-server redis.conf`)。
+
+## バックアップのリストア
+
+新しいサービス・インスタンスにバックアップをリストアするには、既存のバックアップを表示する手順を実行してから、対応する行をクリックして、ダウンロードするバックアップのオプションを展開表示します。 **「リストア (Restore)」**ボタンをクリックします。 復元が開始されたことを示すメッセージが表示されます。 新しいサービス・インスタンスには「redis-restore-[timestamp]」という名前が自動的に付けられます。プロビジョニングが開始されるとダッシュボードに名前が表示されます。

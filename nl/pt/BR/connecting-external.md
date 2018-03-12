@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-07"
+  years: 2017, 2018
+lastupdated: "2018-01-22"
 ---
 
 {:new_window: target="_blank"}
@@ -17,31 +17,69 @@ lastupdated: "2017-06-07"
 Há duas maneiras de conectar um aplicativo externo ao {{site.data.keyword.composeForRedis_full}}:
 
 - Uma **Sequência de conexões** pode ser usada por algumas bibliotecas do cliente e contém todas as informações necessárias para outras bibliotecas se conectarem; especificamente o nome do host e a porta.
+  - As conexões ativadas por TLS/SSL terão um prefixo "rediss:". A maioria dos idiomas tem um driver que suporta conectar seu aplicativo com TLS/SSL. 
+  - As conexões não criptografadas terão um prefixo "redis:". Isso poderá ser usado quando os seus drivers não lidarem com criptografia e você estiver ciente dos riscos potenciais de tráfego não criptografado. 
 
 - **Linha de comandos** é um comando pré-formatado que chamará `redis-cli` com os parâmetros corretos.
+  - Não há suporte TLS/SSL baseado no Redis de software livre, portanto, o utilitário de linha de comandos Redis, `redis-cli` só poderá usar essa conexão com configuração adicional.
+  - O `redis-cli` pode usar uma conexão não criptografada nativamente, sem configuração adicional.
 
-Você localizará ambos na página *Visão geral* de seu serviço {{site.data.keyword.composeForRedis}}.
+Você localizará a **Sequência de conexões** e a **Linha de comandos** na página *Visão geral* do serviço {{site.data.keyword.composeForRedis}}.
+
 
 ## Conectando com a linha de comandos
 
-Você geralmente usará o comando `redis-cli` para se conectar manualmente à implementação, essa é a maneira mais direta para trabalhar remotamente com sua instalação do Redis. Isso vem como parte do pacote Redis; portanto, será necessário instalar o Redis localmente para usá-lo. No Mac OS X, uma boa maneira de obter o Redis é usando o Homebrew.
+Em geral você usará o comando `redis-cli` para se conectar manualmente à implementação - é a maneira mais direta de trabalhar remotamente com a instalação do Redis. Ele é fornecido como parte do pacote Redis, portanto, a instalação terá que ter sido local para usá-lo. É possível fazer download da origem e compilá-la seguindo as instruções na [página de download do Redis](http://redis.io/download).
 
-1. Instale o [brew](http://brew.sh)
-2. Instale o redis com `brew install redis` para deixá-lo funcionando.
+### Conexões ativadas por TLS/SSL
+Para usar o `redis-cli` com uma conexão criptografada, configure um utilitário como `stunnel` para manipular a criptografia. As etapas para configurar o [stunnel](https://www.stunnel.org/index.html) são:
 
-No Linux, consulte seu gerenciador de pacote de distribuição para a construção mais recente. Se estiver disposto, será possível [fazer download da origem](http://redis.io/download) e construir você mesmo. 
+1. Instalar o stunnel
+    
+    Use o gerenciador de pacote para Linux, Homebrew for Mac ou capture um [download](https://www.stunnel.org/downloads.html) apropriado para sua plataforma.
 
-Tome a Linha de comandos do TCP e recorte e cole em seu terminal desta forma:
+2. Inclua as informações do campo **Linha de comandos** no arquivo stunnel.conf
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    ```
+    
+    Se a sua implementação tiver um certificado autoassinado, será necessário incluir informações de certificado no arquivo stunnel.conf:
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    verify=2  
+    checkHost=sl-us-south-1-portal.7.dblayer.com 
+    CAfile=/path/to/redis/cert.crt
+    ```
+
+3. Executar o stunnel
+    
+    Digite o comando `stunnel` na linha de comandos. Ele será executado imediatamente em segundo plano.
+    
+4. Execute `redis-cli` apontando para o host e a porta locais, autentique com as credenciais da implementação.
+
+    ```shell
+    redis-cli -p 6830 -a <password>
+    ```
+
+### Conexões HTTP não criptografadas
+Obtenha a sequência do campo **Linha de comandos** e cole-a em seu terminal:
 ```shell
-$ redis-cli -h portal.brilliant-redis-41.compose-3.composedb.com -p 15639 -a secretpassword
-portal.brilliant-redis-41.compose-3.composedb.com:15639> set hello "world"
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
 OK
-portal.brilliant-redis-41.compose-3.composedb.com:15639> get hello
-"world"
-portal.brilliant-redis-41.compose-3.composedb.com:15639> 
-
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
 ```
-É possível testar sua conexão executando alguns comandos simples do Redis conforme mostrado.
+É possível testar sua conexão executando alguns comandos simples do Redis conforme mostrado. 
+
 
 ## Conectando-se a aplicativos
 

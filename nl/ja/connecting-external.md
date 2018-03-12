@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-06-07"
+  years: 2017, 2018
+lastupdated: "2018-01-22"
 ---
 
 {:new_window: target="_blank"}
@@ -17,34 +17,73 @@ lastupdated: "2017-06-07"
 外部アプリケーションを {{site.data.keyword.composeForRedis_full}} に接続する方法は 2 つあります。
 
 - **接続ストリング**: いくつかのクライアント・ライブラリーで使用できます。他のライブラリーが接続するために必要なすべての情報、具体的にはホスト名とポートが含まれています。
+  - TLS/SSL 対応接続の接頭部は「rediss:」になります。ほとんどの言語には、TLS/SSL でのアプリケーションの接続をサポートするドライバーがあります。 
+  - 非暗号化接続の接頭部は「redis:」になります。 これは、ドライバーが暗号化を処理できない場合に使用できますが、暗号化されないトラフィックにはリスクが潜んでいる可能性があることを意識しておく必要があります。 
 
 - **コマンド・ライン**: 正しいパラメーターを使用して `redis-cli` を呼び出すために予め形式設定されたコマンドです。
+  - オープン・ソースの Redis には TLS/SSL サポートが組み込まれていないので、Redis のコマンド・ライン・ユーティリティーである `redis-cli` でこの接続を使用するには、追加の構成が必要になります。
+  - `redis-cli` では、ネイティブで (追加の構成なしで) 非暗号化接続を使用できます。
 
-両方とも {{site.data.keyword.composeForRedis}} サービスの*概要*ページに表示されます。
+{{site.data.keyword.composeForRedis}} サービスの*「概要」*ページには、**「接続ストリング」**と**「コマンド・ライン」**の両方が表示されます。
+
 
 ## コマンド・ラインによる接続
 
-通常は、`redis-cli` コマンドを使用してデプロイメントに手動で接続します。これは Redis のインストール環境をリモートから最も直接的に使用できる方法です。このコマンドは Redis パッケージに含まれているので、使用するには Redis をローカルにインストールする必要があります。Mac OS X の場合は、Homebrew を使用して Redis を入手することをお勧めします。
+通常は、`redis-cli` コマンドを使用して、デプロイメントに手動で接続します。これが、Redis のインストール環境をリモートから操作するための最も直接的な方法です。このコマンドは Redis パッケージに含まれているので、使用するには、ローカル環境に Redis をインストールする必要があります。ソースをダウンロードしてコンパイルするには、[Redis のダウンロード・ページ](http://redis.io/download)にある手順に従ってください。
 
-1. [brew](http://brew.sh) をインストールします
-2. `brew install redis` を使用して redis をインストールして実行します。
+### TLS /SSL 対応接続
+暗号化接続で `redis-cli` を使用するには、暗号化を処理する `stunnel` などのユーティリティーをセットアップする必要があります。[stunnel](https://www.stunnel.org/index.html) をセットアップする手順は、以下のとおりです。
 
-Linux の場合は、配布パッケージ・マネージャーで最新のビルドを確認します。必要に応じて、[ソースをダウンロード](http://redis.io/download)して自分でビルドできます。 
+1. stunnel をインストールします。
+    
+    Linux 用のパッケージ・マネージャー、Mac 用の Homebrew を使用するか、ご使用のプラットフォームに適した[ダウンロード](https://www.stunnel.org/downloads.html)を取得します。
 
-TCP コマンド・ラインを取得してターミナルにカット・アンド・ペーストします。
+2. **「コマンド・ライン」**フィールドの情報を stunnel.conf ファイルに追加します。
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    ```
+    
+    デプロイメントに自己署名証明書がある場合は、証明書の情報を stunnel.conf ファイルに追加する必要があります。
+    
+    ```text
+    [redis-cli]
+    client=yes  
+    accept=127.0.0.1:6830  
+    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    verify=2  
+    checkHost=sl-us-south-1-portal.7.dblayer.com 
+    CAfile=/path/to/redis/cert.crt
+    ```
+
+3. stunnel を実行します。
+    
+    コマンド・ラインで `stunnel` コマンドを入力します。すぐにバックグラウンドで実行されます。
+    
+4. ローカル・ホストとローカル・ポートを指定した `redis-cli` を実行し、デプロイメントの資格情報で認証します。
+
+    ```shell
+    redis-cli -p 6830 -a <password>
+    ```
+
+### 非暗号化 HTTP 接続
+**「コマンド・ライン」**フィールドのストリングを端末に貼り付けます。
 ```shell
-$ redis-cli -h portal.brilliant-redis-41.compose-3.composedb.com -p 15639 -a secretpassword
-portal.brilliant-redis-41.compose-3.composedb.com:15639> set hello "world"
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
 OK
-portal.brilliant-redis-41.compose-3.composedb.com:15639> get hello
-"world"
-portal.brilliant-redis-41.compose-3.composedb.com:15639> 
-
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
 ```
-次のようにシンプルな Redis コマンドをいくつか実行して、接続をテストできます。
+次のようにシンプルな Redis コマンドをいくつか実行して、接続をテストできます。 
+
+
 ## アプリケーションを使用した接続
 
-公式の Redis クライアント・ライブラリーはありません。Redis のサイトには、多く言語のためのクライアント・ライブラリーが多数リストされています。完全なリストは[こちら](http://redis.io/clients)から確認できます。推奨クライアントには星印が付いています。すぐに始められるように、推奨クライアントのセレクションを次に示します。       
+公式の Redis クライアント・ライブラリーはありません。 Redis のサイトには、多く言語のためのクライアント・ライブラリーが多数リストされています。 完全なリストは[こちら](http://redis.io/clients)から確認できます。 推奨クライアントには星印が付いています。 すぐに始められるように、推奨クライアントのセレクションを次に示します。       
 
 言語|ライブラリー|接続ストリングの利用
 ----------|----------|-----------

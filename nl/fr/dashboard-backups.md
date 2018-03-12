@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2017
+  years: 2017,2018
 lastupdated: "2017-07-13"
 ---
 
@@ -14,7 +14,17 @@ lastupdated: "2017-07-13"
 # Sauvegardes
 {: #backups}
 
-Vous pouvez créer et télécharger des sauvegardes à partir de la page *Gérer* du tableau de bord de votre service. Les sauvegardes planifiées comme manuelles sont disponibles.
+Vous pouvez créer et télécharger des sauvegardes à partir de l'onglet _Backups_ de la page _Gérer_ du tableau de bord de votre service. Vous avez le choix entre les sauvegardes quotidiennes, hebdomadaires, mensuelles et à la demande. Elles sont conservées selon la planification suivante :
+
+Type de sauvegarde|Planification de conservation
+----------|-----------
+Quotidienne|Les sauvegardes quotidiennes sont conservées pendant 7 jours
+Hebdomadaire|Les sauvegardes hebdomadaires sont conservées pendant 4 semaines
+Mensuelle|Les sauvegardes mensuelles sont conservées pendant 3 mois
+A la demande|Une seule sauvegarde à la demande est conservée. Il s'agit toujours de la dernière sauvegarde à la demande effectuée.
+{: caption="Tableau 1. Planification de conservation des sauvegardes" caption-side="top"}
+
+Les planifications de sauvegarde et les règles de conservation sont fixées. Si vous avez besoin de conserver davantage de sauvegardes que ne le permet la planification de conservation, vous devez télécharger les sauvegardes et les archiver en fonction de vos exigences métier.
 
 ## Affichage des sauvegardes existantes
 
@@ -40,7 +50,7 @@ Redis sauvegarde par défaut un instantané binaire de vos données. Le fichier 
 
 ## Utilisation d'une sauvegarde avec une base de données locale
 
-Vous pouvez utiliser votre sauvegarde {{site.data.keyword.composeForRedis}} pour exécuter une copie locale de votre base de données. 
+Vous pouvez utiliser votre sauvegarde {{site.data.keyword.composeForRedis}} pour exécuter une copie locale de votre base de données.
 
 1. Déplacez le fichier dump.rdb vers un répertoire qui lui est propre, par exemple 'db'.
 2. Etant donné que vous aurez besoin d'un fichier de configuration Redis pour démarrer l'instance Redis, il vous faudra copier un fichier redis.conf depuis votre installation dans le répertoire db qui contient déjà le fichier dump.rdb. Par exemple, si vous avez installé Redis sur OSX avec homebrew, le fichier redis.conf se trouve dans `/usr/local/etc` donc, à partir du répertoire db exécutez `cp /usr/local/etc/redis.conf`.
