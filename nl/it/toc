@@ -1,0 +1,24 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="compose-for-redis" audience="service" href="/docs/services/ComposeForRedis/getting_started.html"}
+Compose For Redis
+
+	{: .navgroup id="learn"}
+	getting_started.md
+	index.md
+	pricing.md
+
+	{: .topicgroup}
+	Il dashboard del servizio
+		dashboard-overview.md
+		dashboard-backups.md
+		dashboard-settings.md
+	{: .navgroup-end}
+
+	{: .navgroup id="howto"}
+		{: .topicgroup}
+	Connessione a Compose for Redis
+		connecting-bluemix-app.md
+		connecting-external.md
+	{: .navgroup-end}
