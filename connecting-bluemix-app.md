@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016,2018
-lastupdated: "2017-06-16"
+lastupdated: "2018-05-09"
 ---
 
 {:new_window: target="_blank"}
@@ -26,8 +26,12 @@ Download the sample app and follow the instructions in the readme file. Then, in
 Field Name|Description
 ----------|-----------
 `uri`|The URI to be used when connecting to the service, which includes the schema (redis:), admin user name and password, the host name of the server and the port number to connect to.
+`uri_direct_1`|A secondary URI that can be used when connecting to the service. The format is the same as for `uri`.
+`ca_certificate_base64` `(optional)`|A base64 encoded, self-signed certificate that is used to confirm that an application is connecting to the appropriate server. The certificate is only present on services that have a self-signed instead of a Let's Encrypt certificate. You need to decode the key before you can use it, as shown in the sample application.
 `uri_cli`|A `redis-cli` command line that connects to the database instance.
 `deployment_id`|An internal identifier for the service as created within Compose.
 `db_type`|The type of database that is offered by the service; in this case `redis`.
 `name`|The database deployment name.
 {: caption="Table 1. Compose for Redis credentials" caption-side="top"}
+
+**Note:** Two `haproxy` portals provide access to the Redis service. Both `uri` and `uri_direct_1` can be used to connect. In your applications, switch between `uri` and `uri_direct_1` to manage responses to connection failures.
