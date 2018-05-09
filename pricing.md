@@ -15,20 +15,22 @@ lastupdated: "2018-01-03"
 {: #pricing}
 
 ## Base Configuration
+
 An {{site.data.keyword.composeForRedis_full}} service starts with two redis/sentinel nodes that each have 256MB memory and 256MB storage, which is equal to 1 unit of resources. The service _includes_ replication and high-availability, so each unit and the price per unit _includes_ the cost of the resources across both nodes.
 
 The base configuration also includes a dedicated sentinel node to handle replication and a HAProxy portal to manage connections. The sentinel node and the HAProxy portal have 64MB memory each.
 
-### Cost
 The base service configuration has a set price. Please consult the catalog tiles on {{site.data.keyword.cloud_notm}} for base pricing in your local currency. For example, the base price in US dollars is $13/month.
 
-## Expansion Options
+## Increasing resources
+
 If you need additional memory for your service, you can increase the resources allocated in a 1:1 ratio of disk storage to memory unit. A {{site.data.keyword.composeForRedis}} unit consists of 256MB of storage and 256MB of memory, and each unit and the price per unit _includes_ the cost to increase the resources on both nodes.
 
-### Cost
+## Calculating the cost of your deployment
+{: #tiered-pricing}
+
 Each additional unit (256MB storage/256MB memory) has a per unit price, which is listed in your local currency on the {{site.data.keyword.cloud_notm}} catalog tile for the service. In US dollars each additional unit costs $13. As the _total_ size of all your {{site.data.keyword.composeForRedis}} services increases, the per unit price decreases, as shown in the tiered pricing table, below.
 
-### Tiered Pricing
 Number of Units|Price per Unit
 ----------|-----------
 1 - 9 units|base price per unit -- $13.00 USD/Unit
