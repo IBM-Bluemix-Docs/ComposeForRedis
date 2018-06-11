@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016,2018
-lastupdated: "2017-10-16"
+lastupdated: "2018-03-27"
 ---
 
 {:new_window: target="_blank"}
@@ -25,7 +25,7 @@ Redis は、オープン・ソースでインメモリー型のキー/値スト�
 
 サービス名、およびサービスをプロビジョンする地域、組織、スペースを選択します。 **「データベースのバージョンの選択 (Select a database version)」**フィールドを使用して、データベースの使用できるバージョンを選択できます。
 
-TLS /SSL 暗号化を選択するためのドロップダウンがあります。暗号化は、デフォルトでは **True** に設定されています。**False** を選択すると、サービスが暗号化なしでプロビジョンされます。これは、ドライバーが暗号化を処理できない場合に使用できますが、暗号化されないトラフィックにはリスクが潜んでいる可能性があることを意識しておく必要があります。 
+TLS /SSL 暗号化を選択するためのドロップダウンがあります。 暗号化は、デフォルトでは **True** に設定されています。 **False** を選択すると、サービスが暗号化なしでプロビジョンされます。 これは、ドライバーが暗号化を処理しない場合に使用できますが、暗号化されないトラフィックにはリスクが潜んでいる可能性があることを意識しておく必要があります。 
 
 {{site.data.keyword.composeForRedis}} インスタンスをプロビジョンするときには、*標準*プランか*エンタープライズ*・プランを選択できます。 *エンタープライズ*・プランでは、{{site.data.keyword.composeForRedis}} インスタンスを利用可能な {{site.data.keyword.composeEnterprise}} クラスターにプロビジョンできます。 {{site.data.keyword.composeEnterprise}} は、企業コンプライアンスで要求されるセキュリティーと分離を提供し、専用ネットワーキングを使用してデプロイ済みデータベースのパフォーマンスを確保します。 詳しくは、[Compose Enterprise 文書](../ComposeEnterprise/index.html)を参照してください。
 
@@ -36,7 +36,11 @@ TLS /SSL 暗号化を選択するためのドロップダウンがあります�
 - サービスに割り振るリソースを増やす
 - サービス・パスワードを変更する
 - ホワイトリストを使用してデータベースへのアクセスを制限する。 
+
 詳しくは、[設定](./dashboard-settings.html)を参照してください。
+
+{{site.data.keyword.composeForRedis}} は、Cloud Foundry の役割を利用して、サービスへのアクセスを管理します。開発者役割を持つユーザーのみが、サービス・ダッシュボードを表示または使用できます。Cloud Foundry の役割について詳しくは、『[Cloud Foundry アクセス権限](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess)』および 『[Cloud Foundry のアクセス権限の管理](https://console.bluemix.net/docs/iam/mngcf.html#mngcf)』のページを参照してください。
+{: .tip}
 
 ## {{site.data.keyword.composeForRedis}} への接続
 
@@ -46,6 +50,6 @@ TLS /SSL 暗号化を選択するためのドロップダウンがあります�
 
 {{site.data.keyword.cloud_notm}} アプリケーションをサービスに接続するには、サービスと一緒に作成された資格情報を使用します。 {{site.data.keyword.cloud_notm}} アプリケーションを {{site.data.keyword.composeForRedis}} サービスに接続する方法については、[{{site.data.keyword.cloud_notm}} アプリケーションの接続](./connecting-bluemix-app.html)を参照してください。
 
-## {{site.data.keyword.cloud_notm}}
+## {{site.data.keyword.cloud_notm}} 外からの {{site.data.keyword.composeForRedis}} への接続
 
- 外からの {{site.data.keyword.composeForRedis}} への接続{{site.data.keyword.composeForRedis}} に {{site.data.keyword.cloud_notm}} の外部から接続するには、提供された接続ストリングまたはコマンド・ラインを使用します。 接続方法については、[外部アプリケーションの接続](./connecting-external.html)を参照してください。
+{{site.data.keyword.composeForRedis}} に {{site.data.keyword.cloud_notm}} の外部から接続するには、提供された接続ストリングまたはコマンド・ラインを使用します。 接続方法については、[外部アプリケーションの接続](./connecting-external.html)を参照してください。

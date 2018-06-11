@@ -31,23 +31,40 @@ Sie finden sowohl die **Verbindungszeichenfolge** als auch die **Befehlszeile** 
 
 In der Regel verwenden Sie den Befehl `redis-cli`, um eine manuelle Verbindung zur Bereitstellung herzustellen. Das ist die direkteste Möglichkeit, über Fernzugriff mit Ihrer Redis-Installation zu arbeiten. Da der Befehl im Redis-Paket enthalten ist, müssen Sie Redis lokal installieren, um ihn verwenden zu können. Anhand der Anweisungen auf der [Redis-Downloadseite](http://redis.io/download) können Sie die Quelle herunterladen und kompilieren.
 
-### Für TLS/SSL aktivierte Verbindungen
-Wenn Sie `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen, richten Sie ein Dienstprogramm wie `stunnel` ein, das die Verschlüsselung  handhaben kann. Die Schritte zum Einrichten von [stunnel](https://www.stunnel.org/index.html) sind:
+### Nicht verschlüsselte Verbindungen
 
-1. stunnel installieren
+Falls Ihr Redis nicht durch TLS-Verschlüsselung geschützt ist, das heißt, wenn in der Verbindungszeichenfolge `redis:` angezeigt wird, verwenden Sie die angezeigte Zeichenfolge aus dem Feld **Befehlszeile** und fügen Sie sie in Ihrem Terminal ein: 
+```shell
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
+OK
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
+```
+Sie können Ihre Verbindung testen, indem Sie einige einfache Redis-Befehle wie angezeigt ausführen.
+
+### Für TLS/SSL aktivierte Verbindungen
+
+Wenn Sie die `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen, richten Sie ein Dienstprogramm wie `stunnel` ein, das die Verbindung zur redis-cli in eine TLS-Verschlüsselung einschließen kann. Die Schritte zum Einrichten von [stunnel](https://www.stunnel.org/index.html) sind:
+
+1. 'stunnel' installieren
     
     Verwenden Sie Ihren Paketmanager für Linux, Homebrew für Mac oder wählen Sie einen [Download](https://www.stunnel.org/downloads.html) für Ihre jeweilige Plattform.
 
-2. Die Informationen aus dem Feld **Befehlszeile** in die stunnel.conf-Datei einfügen
-    
+2. Führen Sie ein Parsing für die **Verbindungszeichenfolge** aus. Zum Beispiel für eine Verbindungszeichenfolge wie: 
+   ```text
+   rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
+   ```
+   Der Text zwischen dem zweiten Doppelpunkt und dem At-Zeichen (@) ist das Kennwort. Der Text nach dem At-Zeichen (@) bis zum nächsten Doppelpunkt ist der Hostname und die Anzahl nach dem Doppelpunkt ist die Portnummer. Also ist das Kennwort in diesem Beispiel `PASSWORD` und `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` ist der Hostname während `24370` die Portnummer ist. 
+
+3. Fügen Sie diese Konfigurationsdaten zur Datei 'stunnel.conf' hinzu. Die Konfiguration besteht aus einem Namen für einen Service (`[redis-cli]`), einer Einstellung, die aussagt, dass dieser 'stunnel' ein TLS-Client sein wird (`client=yes`), einer IP-Adresse und einem Port, an denen die Verbindungen akzeptiert und hergestellt werden (`accept=127.0.0.1:6830`), dem Hostnamen und dem Port, zu dem wir eine Verbindung herstellen möchten (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`). 
     ```text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
-    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    
-    Wenn Ihre Bereitstellung über ein selbst signiertes Zertifikat verfügt, müssen Sie die Zertifikatsinformationen in die stunnel.conf-Datei einfügen:
+    Wenn Ihre Bereitstellung mit `composedb.com` endet, verwendet sie 'Let's Encrypt'-Zertifikate und Sie müssen nichts unternehmen. Wenn sie mit `dblayer.com` endet, dann verwendet die Bereitstellung selbst signierte Zertifikate und Sie müssen die Zertifikatinformationen von der Registerkarte *SSL-Zertifikat* der Übersicht abrufen und alle Informationen in eine Textdatei kopieren. Diese kann zum Beispiel den Namen `cert.crt` erhalten. Fügen Sie dann den Pfad zu diesen Zertifikatsinformationen zur Datei 'stunnel.conf' hinzu. 
     
     ```text
     [redis-cli]
@@ -59,27 +76,13 @@ Wenn Sie `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen, ric
     CAfile=/path/to/redis/cert.crt
     ```
 
-3. stunnel ausführen
+3. Führen Sie 'stunnel' aus.
+    Geben Sie den Befehl `stunnel` in der Befehlszeile ein. Das Programm wird sofort im Hintergrund ausgeführt.
     
-    Geben Sie den `stunnel`-Befehl in der Befehlszeile ein. Das Programm wird sofort im Hintergrund ausgeführt.
-    
-4. `redis-cli` mit Zeiger auf den lokalen Host und Port ausführen und mit Berechtigungsnachweise der Bereitstellung authentifizieren.
-
+4. Führen Sie in einem neuen Terminalfenster `redis-cli` aus und verweisen Sie dabei auf den lokalen Host und den Port und authentifizieren Sie sich mit den Berechtigungsnachweisen der Bereitstellung. 
     ```shell
     redis-cli -p 6830 -a <password>
     ```
-
-### Nicht verschlüsselte HTTP-Verbindungen
-Verwenden Sie die Zeichenfolge aus dem Feld **Befehlszeile** und fügen Sie sie in Ihrem Terminal ein:
-```shell
-$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
-sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
-OK
-sl-us-south-1-portal.7.dblayer.com:23870> get hello
-"world" 
-```
-Sie können Ihre Verbindung testen, indem Sie einige einfache Redis-Befehle wie angezeigt ausführen. 
-
 
 ## Verbindung mit Anwendungen herstellen
 

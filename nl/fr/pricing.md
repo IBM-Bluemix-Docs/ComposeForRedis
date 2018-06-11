@@ -20,7 +20,7 @@ Un service {{site.data.keyword.composeForRedis_full}} démarre avec deux noeuds 
 La configuration de base inclut également un noeud sentinel dédié pour la gestion de la réplication et un portail HAProxy pour la gestion des connexions. Le noeud sentinel et le portail HAProxy disposent chacun de 64 Mo de mémoire.
 
 ### Coût
-Le prix de la configuration du service de base est défini. Consultez les vignettes du catalogue sur {{site.data.keyword.cloud_notm}} pour connaître la tarification de base dans votre devise locale. Par exemple, le prix de base en dollars US est de 13 $/mois. 
+Le prix de la configuration du service de base est défini. Consultez les vignettes du catalogue sur {{site.data.keyword.cloud_notm}} pour connaître la tarification de base dans votre devise locale. Par exemple, le prix de base en dollars US est de 13 $/mois.
 
 ## Options d'extension
 Si vous avez besoin de davantage de mémoire pour votre service, vous pouvez augmenter les ressources allouées selon un rapport de 1 pour 1 en stockage sur disque et unité de mémoire. Une unité {{site.data.keyword.composeForRedis}} se compose de 256 Mo de stockage et de 256 Mo de mémoire, de sorte que chaque unité et le prix unitaire _incluent_ le coût d'accroissement des ressources dans les trois noeuds de données.

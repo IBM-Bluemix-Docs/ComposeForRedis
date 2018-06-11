@@ -31,7 +31,7 @@ Ogni unità aggiuntiva (256MB di archiviazione/256MB di memoria) ha un prezzo pe
 ### Prezzi a livelli
 Numero di unità|Prezzo per unità
 ----------|-----------
-1 - 9 unità|prezzo per unità di base -- $13.00 USD/Unità 
+1 - 9 unità|prezzo per unità di base -- $13.00 USD/Unità
 10 - 24 unità|10% di riduzione -- $11.70 USD/Unità
 25 - 49 unità|20% di riduzione -- $10.40 USD/Unità
 50 - 99 unità|30% di riduzione -- $9.10 USD/Unità

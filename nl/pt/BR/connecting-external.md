@@ -31,23 +31,40 @@ Você localizará a **Sequência de conexões** e a **Linha de comandos** na pá
 
 Em geral você usará o comando `redis-cli` para se conectar manualmente à implementação - é a maneira mais direta de trabalhar remotamente com a instalação do Redis. Ele é fornecido como parte do pacote Redis, portanto, a instalação terá que ter sido local para usá-lo. É possível fazer download da origem e compilá-la seguindo as instruções na [página de download do Redis](http://redis.io/download).
 
+### Conexões não criptografadas
+
+Se o seu Redis não estiver protegido por criptografia do TLS, que é a Sequência de conexões, mostrar `redis:`, então, pegue a sequência do campo **Linha de comandos** que é exibida e cole-a em seu terminal:
+```shell
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
+OK
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
+```
+É possível testar sua conexão executando alguns comandos simples do Redis conforme mostrado.
+
 ### Conexões ativadas por TLS/SSL
-Para usar o `redis-cli` com uma conexão criptografada, configure um utilitário como `stunnel` para manipular a criptografia. As etapas para configurar o [stunnel](https://www.stunnel.org/index.html) são:
+
+Para usar a `redis-cli` com uma conexão criptografada, configure um utilitário como `stunnel` que pode quebrar a conexão redis-cli em criptografia do TLS. As etapas para configurar o [stunnel](https://www.stunnel.org/index.html) são:
 
 1. Instalar o stunnel
     
     Use o gerenciador de pacote para Linux, Homebrew for Mac ou capture um [download](https://www.stunnel.org/downloads.html) apropriado para sua plataforma.
 
-2. Inclua as informações do campo **Linha de comandos** no arquivo stunnel.conf
-    
+2. Analise a **Sequência de conexões**. Por exemplo, com uma sequência de conexões como:
+   ```text
+   rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
+   ```
+   O texto entre os segundos dois pontos e at-symbol é a senha. O texto após a @ e até os próximos dois pontos é o host e o número que segue esses dois pontos é o número da porta. Então no exemplo, `PASSWORD` é a senha, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` é o host e `24370` é a porta.
+
+3. Inclua essas informações de configuração no arquivo stunnel.conf. A configuração é um nome para um serviço (`[redis-cli]`), uma configuração que diz que esse stunnel será um cliente do TLS (`client=yes`), um endereço IP e porta para aceitar conexões em (`accept=127.0.0.1:6830`) e conectar, o nome do host e a porta que desejamos conectar ao (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
     ```text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
-    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    
-    Se a sua implementação tiver um certificado autoassinado, será necessário incluir informações de certificado no arquivo stunnel.conf:
+    Se a sua implementação terminar com `composedb.com`, ela usará certificados Let's Encrypt e nada mais terá que ser feito. Se ela terminar com `dblayer.com` então, ela terá um certificado autoassinado; você precisará obter as informações de certificado da guia *Certificado SSL* da visão geral e copiar tudo para um arquivo de texto; digamos, `cert.crt` por exemplo. Em seguida, inclua o caminho para as informações desse certificado no arquivo stunnel.conf:
     
     ```text
     [redis-cli]
@@ -59,27 +76,13 @@ Para usar o `redis-cli` com uma conexão criptografada, configure um utilitário
     CAfile=/path/to/redis/cert.crt
     ```
 
-3. Executar o stunnel
-    
+3. Executar stunnel
     Digite o comando `stunnel` na linha de comandos. Ele será executado imediatamente em segundo plano.
     
-4. Execute `redis-cli` apontando para o host e a porta locais, autentique com as credenciais da implementação.
-
+4. Em uma nova janela Terminal, execute `redis-cli` apontando para o host e a porta, autentique com as credenciais da implementação.
     ```shell
     redis-cli -p 6830 -a <password>
     ```
-
-### Conexões HTTP não criptografadas
-Obtenha a sequência do campo **Linha de comandos** e cole-a em seu terminal:
-```shell
-$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
-sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
-OK
-sl-us-south-1-portal.7.dblayer.com:23870> get hello
-"world" 
-```
-É possível testar sua conexão executando alguns comandos simples do Redis conforme mostrado. 
-
 
 ## Conectando-se a aplicativos
 

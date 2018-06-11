@@ -1,12 +1,12 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="compose-for-redis" audience="service" href="/docs/services/ComposeForRedis/getting_started.html"}
+{: .toc subcollection="compose-for-redis" audience="service" href="/docs/services/ComposeForRedis/index.html"}
 Compose For Redis
 
 	{: .navgroup id="learn"}
-	getting_started.md
 	index.md
+	getting_started.md
 	pricing.md
 
 	{: .topicgroup}

@@ -18,11 +18,11 @@ Esistono due modi per collegare un'applicazione esterna a {{site.data.keyword.co
 
 - Può essere utilizzata una **Stringa di connessione** in alcune librerie client che contiene tutte le informazioni necessarie per il collegamento di altre librerie; nello specifico il nome host e la porta.
   - Le connessioni abilitate TLS/SSL avranno un prefisso "rediss:". La maggior parte dei linguaggi hanno un driver che supporta la connessione alla tua applicazione con TLS/SSL. 
-  - Le connessioni non codificate avranno un prefisso "redis:". Questo può essere utilizzato quando i tuoi driver non gestiscono la codifica e sei consapevole dei potenziali rischi del traffico non codificato. 
+  - Le connessioni non crittografate avranno un prefisso "redis:". Questo può essere utilizzato quando i tuoi driver non gestiscono la crittografia e sei consapevole dei potenziali rischi del traffico non crittografato. 
 
 - La **Riga di comando** è un comando pre-formattato che richiamerà `redis-cli` con i parametri corretti.
   - Non esiste il supporto TLS/SSL nel open source Redis, per cui il programma di utilità della riga di comando Redis, `redis-cli` può utilizzare solo questa connessione con configurazione aggiuntiva.
-  - `redis-cli` può utilizzare una connessione non codificata in modo nativo, senza configurazione aggiuntiva.
+  - `redis-cli` può utilizzare una connessione non crittografata in modo nativo, senza configurazione aggiuntiva.
 
 Troverai sia la **Stringa di connessione** che la **Riga di comando** nella pagina *Overview* del tuo servizio {{site.data.keyword.composeForRedis}}.
 
@@ -31,23 +31,40 @@ Troverai sia la **Stringa di connessione** che la **Riga di comando** nella pagi
 
 Normalmente utilizzi il comando `redis-cli` per collegarti manualmente alla distribuzione - è il modo più diretto per utilizzare in remoto la tua installazione Redis. Viene fornito come parte del pacchetto Redis, per cui lo dovrai avere installato localmente per utilizzarlo. Puoi scaricare l'origine e compilarla seguendo le istruzioni nella [Pagina di scaricamento Redis](http://redis.io/download).
 
+### Connessioni non crittografate
+
+Se il tuo Redis non è protetto dalla crittografia TLS, ossia la stringa di connessione presenta `redis:`, prendi la stringa dal campo **Command Line** visualizzato e incollala nel tuo terminale:
+```shell
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
+OK
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world" 
+```
+Puoi verificare la tua connessione eseguendo alcuni comandi Redis semplici come mostrato.
+
 ### Connessioni abilitate TLS/SSL
-Per utilizzare `redis-cli` con una connessione codificata configura un programma di utilità come `stunnel` per gestire la modifica. La procedura per configurare [stunnel](https://www.stunnel.org/index.html) è:
+
+Per utilizzare `redis-cli` con una connessione crittografata, configura un programma di utilità come `stunnel` che includerà la connessione redis-cli nella crittografia TLS. La procedura per configurare [stunnel](https://www.stunnel.org/index.html) è:
 
 1. Installa stunnel
     
     Utilizza il tuo gestore pacchetti per Linux, Homebrew per Mac o prendi uno [scaricamento](https://www.stunnel.org/downloads.html) appropriato per la tua piattaforma.
 
-2. Aggiungi le informazioni dal campo **Command Line** del file stunnel.conf
-    
+2. Analizza la **stringa di connessione**. Ad esempio, con una stringa di connessione come:
+   ```text
+   rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
+   ```
+  Il testo tra il secondo carattere due punti e il simbolo @ è la password. Il testo dopo il simbolo @ e fino al successivo carattere due punti è l'host e il numero dopo tale carattere due punti è il numero porta. Quindi, nell'esempio, `PASSWORD` è la password, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` è l'host e `24370` p la porta.
+
+3. Aggiungi queste informazioni di configurazione al file stunnel.conf. La configurazione è un nome per un servizio (`[redis-cli]`), un'impostazione che indica che questo stunnel sarà un client TLS (`client=yes`), un indirizzo IP e una porta su cui accettare le connessioni (`accept=127.0.0.1:6830`) e connect, il nome host e la porta a cui vogliamo stabilire la connessione (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
     ```text
     [redis-cli]
-    client=yes  
-    accept=127.0.0.1:6830  
-    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    client=yes
+    accept=127.0.0.1:6830
+    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    
-    Se la tua distribuzione ha un certificato autofirmato, dovrai aggiungere le informazioni del certificato al file stunnel.conf:
+    Se la tua distribuzione termina con `composedb.com`, utilizza i certificati Let's Encrypt e non occorre fare altro. Se finisce con `dblayer.com`, ha un certificato autofirmato; dovrai ottenere le informazioni sul certificato dalla scheda *SSL Certificate* della panoramica e copiarlo integralmente in un file di testo, ad esempio `cert.crt`. Aggiungi quindi il percorso a queste informazioni sul certificato nel file stunnel.conf:
     
     ```text
     [redis-cli]
@@ -60,26 +77,12 @@ Per utilizzare `redis-cli` con una connessione codificata configura un programma
     ```
 
 3. Esegui stunnel
+    Immetti il comando `stunnel` alla riga di comando. Sarà immediatamente eseguito in background.
     
-    Immetti il comando `stunnel` nella riga di comando. Sarà immediatamente eseguito in background.
-    
-4. Esegui `redis-cli` puntando alla porta e all'host locale, autenticati con le credenziali della distribuzione.
-
+4. In una nuova finestra del terminale, esegui `redis-cli` puntando all'host e alla porta locali ed esegui l'autenticazione con le credenziali della distribuzione.
     ```shell
     redis-cli -p 6830 -a <password>
     ```
-
-### Connessioni HTTP non codificate
-Prendi la stringa dal campo **Command Line** e incollala nel tuo terminale:
-```shell
-$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
-sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
-OK
-sl-us-south-1-portal.7.dblayer.com:23870> get hello
-"world" 
-```
-Puoi verificare la tua connessione eseguendo alcuni comandi Redis semplici come mostrato. 
-
 
 ## Connessione con le applicazioni
 

@@ -31,23 +31,42 @@ lastupdated: "2018-01-22"
 
 通常您將使用 `redis-cli` 指令手動連接至部署 - 這是遠端使用 Redis 安裝的最直接方式。它是 Redis 套件的一部分，所以您必須在本端安裝，才能使用它。您可以遵循 [Redis 下載頁面](http://redis.io/download)上的指示，下載原始檔並加以編譯。
 
+### 未加密連線
+
+如果您的 Redis 不受 TLS 加密保護（即「連線字串」顯示 `redis:`），請從顯示的**指令行**欄位取得字串，並將它貼入您的終端機：
+```shell
+$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
+sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
+OK
+sl-us-south-1-portal.7.dblayer.com:23870> get hello
+"world"
+```
+您可以執行某些簡單的 Redis 指令來測試連線，如下所示。
+
+
+
 ### 已啟用 TLS/SSL 的連線
-若要使用 `redis-cli` 與加密的連線搭配，請設定一個公用程式（如 `stunnel`）來處理加密。設定 [stunnel](https://www.stunnel.org/index.html) 的步驟如下：
+
+若要搭配使用 `redis-cli` 與加密連線，請設定 `stunnel` 這類公用程式，以在 TLS 加密中包裝 redis-cli 連線。設定 [stunnel](https://www.stunnel.org/index.html) 的步驟如下：
 
 1. 安裝 stunnel
     
     使用 Linux、Homebrew for Mac 適用的套件管理程式，或抓取平台適用的[下載](https://www.stunnel.org/downloads.html)。
 
-2. 將**指令行**欄位中的資訊新增至 stunnel.conf 檔案
-    
+2. 剖析**連線字串**。例如，使用下列這類連線字串：
+   ```text
+   rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
+   ```
+   第二個冒號與 @ 符號之間的文字是密碼。在 @ 後面到下一個冒號之前的文字是主機，而該冒號後面的數字是埠號。因此，在此範例中，`PASSWORD` 是密碼、`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` 是主機，而 `24370` 是埠。
+
+3. 將此配置資訊新增至 stunnel.conf 檔案。配置是服務的名稱 (`[redis-cli]`)、指出此 stunnel 將是 TLS 用戶端的設定 (`client=yes`)、要接受連線的 IP 位址及埠 (`accept=127.0.0.1:6830`)，並連接您要連接至的主機名稱及埠 (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`)。
     ```text
     [redis-cli]
     client=yes
     accept=127.0.0.1:6830
-    connect=sl-us-south-1-portal.7.dblayer.com:23870
+    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    
-    如果您的部署具有自簽憑證，則需要將憑證資訊新增至 stunnel.conf 檔案：
+    如果您部署的結尾是 `composedb.com`，則會使用 Let's Encrypt 憑證，而不需要再執行任何動作。如果它的結尾是 `dblayer.com`，而且具有自簽憑證，則您需要從概觀的 *SSL 憑證* 標籤中取得憑證資訊，並將它全部複製到文字檔；例如 `cert.crt`。然後，將此憑證資訊的路徑新增至 stunnel.conf 檔案：
     
     ```text
     [redis-cli]
@@ -60,28 +79,12 @@ lastupdated: "2018-01-22"
     ```
 
 3. 執行 stunnel
-    
     在指令行中鍵入 `stunnel` 指令。它將立即在背景中執行。
     
-4. 執行指向本端主機及埠的 `redis-cli`，利用部署的認證進行鑑別。
-
+4. 在新的「終端機」視窗中，執行指向本端主機及埠的 `redis-cli`，利用部署的認證進行鑑別。
     ```shell
     redis-cli -p 6830 -a <password>
     ```
-
-### 未加密的 HTTP 連線
-從**指令行**欄位中取得字串，然後將它貼入您的終端機中：
-```shell
-$ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
-sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
-OK
-sl-us-south-1-portal.7.dblayer.com:23870> get hello
-"world"
-```
-您可以執行某些簡單的 Redis 指令來測試連線，如下所示。
-
- 
-
 
 ## 使用應用程式連接
 
