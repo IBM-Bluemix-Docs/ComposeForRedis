@@ -1,0 +1,24 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="compose-for-redis" audience="service" href="/docs/services/ComposeForRedis/index.html"}
+Compose For Redis
+
+	{: .navgroup id="learn"}
+	index.md
+	getting_started.md
+	pricing.md
+
+	{: .topicgroup}
+	서비스 대시보드
+		dashboard-overview.md
+		dashboard-backups.md
+		dashboard-settings.md
+	{: .navgroup-end}
+
+	{: .navgroup id="howto"}
+		{: .topicgroup}
+	Compose for Redis에 연결
+		connecting-bluemix-app.md
+		connecting-external.md
+	{: .navgroup-end}
