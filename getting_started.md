@@ -70,16 +70,16 @@ The {{site.data.keyword.cloud_notm}} CLI tool tool is what you'll use to communi
 1. Connect to {{site.data.keyword.cloud_notm}} in the command line tool and follow the prompts to log in.
 
   ```
-  bx login
+  ibmcloud login
   ```
 
-  If you have a federated user ID, use the `bx login --sso` command to log in with your single sign on ID. See [Logging in with a federated ID](https://console.{DomainName}/docs/cli/login_federated_id.html#federated_id) to learn more.
+  If you have a federated user ID, use the `ibmcloud login --sso` command to log in with your single sign on ID. See [Logging in with a federated ID](https://console.{DomainName}/docs/cli/login_federated_id.html#federated_id) to learn more.
   {: .tip}
 
 2. Make sure you are targetting the correct {{site.data.keyword.cloud_notm}} org and space.
 
   ```
-  bx target --cf
+  ibmcloud target --cf
   ```
 
   Choose from the options provided, using the same values you used when you created the service.
@@ -113,7 +113,7 @@ This step will fail if the service has not finished provisioning from Step 1. Yo
 When you push the app it will automatically be bound to the service specified in the manifest file.
 
 ```
-bx cf push
+ibmcloud cf push
 ```
 
 ## Step 8: Check the app is connected to your {{site.data.keyword.composeForRedis}} service
