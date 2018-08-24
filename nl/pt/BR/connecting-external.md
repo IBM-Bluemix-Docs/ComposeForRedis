@@ -57,21 +57,19 @@ Para usar a `redis-cli` com uma conexão criptografada, configure um utilitário
    ```
    O texto entre os segundos dois pontos e at-symbol é a senha. O texto após a @ e até os próximos dois pontos é o host e o número que segue esses dois pontos é o número da porta. Então no exemplo, `PASSWORD` é a senha, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` é o host e `24370` é a porta.
 
-3. Inclua essas informações de configuração no arquivo stunnel.conf. A configuração é um nome para um serviço (`[redis-cli]`), uma configuração que diz que esse stunnel será um cliente do TLS (`client=yes`), um endereço IP e porta para aceitar conexões em (`accept=127.0.0.1:6830`) e conectar, o nome do host e a porta que desejamos conectar ao (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
-    ```text
+3. Inclua essas informações de configuração no arquivo stunnel.conf. A configuração é um nome para um serviço (`[redis-cli]`), uma configuração que diz que esse stunnel será um cliente TLS (`client=yes`), um endereço IP e uma porta para aceitar conexões (`accept=127.0.0.1:6830`) e se conectar, o nome do host e a porta aos quais queremos nos conectar (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
-    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
+    connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com: 24370
     ```
     Se a sua implementação terminar com `composedb.com`, ela usará certificados Let's Encrypt e nada mais terá que ser feito. Se ela terminar com `dblayer.com` então, ela terá um certificado autoassinado; você precisará obter as informações de certificado da guia *Certificado SSL* da visão geral e copiar tudo para um arquivo de texto; digamos, `cert.crt` por exemplo. Em seguida, inclua o caminho para as informações desse certificado no arquivo stunnel.conf:
     
     ```text
-    [redis-cli]
-    client=yes  
+    [ redis-cli ] client=yes  
     accept=127.0.0.1:6830  
-    connect=sl-us-south-1-portal.7.dblayer.com:23870
-    verify=2  
+    connect=sl-us-south-1-portal.7.dblayer.com: 23870 verify= 2  
     checkHost=sl-us-south-1-portal.7.dblayer.com 
     CAfile=/path/to/redis/cert.crt
     ```

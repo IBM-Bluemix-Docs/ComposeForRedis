@@ -27,7 +27,7 @@ Wählen Sie einen Servicenamen und eine Region, eine Organisation und einen Bere
 
 Über ein Dropdown-Menü kann die TLS/SSL-Verschlüsselung ausgewählt werden. Die Verschlüsselung ist standardmäßig auf **True** gesetzt. Wenn Sie **False** auswählen, wird der Service ohne Verschlüsselung bereitgestellt. Dies kann verwendet werden, wenn Ihr Treiber die Verschlüsselung nicht unterstützt und Ihnen die potenziellen Risiken beim unverschlüsselten Datenverkehr bekannt sind. 
 
-Bei der Bereitstellung Ihrer {{site.data.keyword.composeForRedis}}-Instanz können Sie den Plan *Standard* oder *Enterprise* auswählen. Mit dem Plan *Enterprise* können Sie Ihre {{site.data.keyword.composeForRedis}}-Instanz in einem {{site.data.keyword.composeEnterprise}}-Cluster bereitstellen. {{site.data.keyword.composeEnterprise}} stellt die für die Konformität mit Enterprise erforderliche Sicherheit und Isolation bereit und stellt mithilfe eines dedizierten Netzbetriebs die Leistung der bereitgestellten Datenbanken sicher. Weitere Details finden Sie in der [Dokumentation zu Compose Enterprise](../ComposeEnterprise/index.html).
+Bei der Bereitstellung Ihrer {{site.data.keyword.composeForRedis}}-Instanz können Sie den Plan *Standard* oder *Enterprise* auswählen. Mit dem Plan *Enterprise* können Sie Ihre {{site.data.keyword.composeForRedis}}-Instanz in einem {{site.data.keyword.composeEnterprise}}-Cluster bereitstellen. {{site.data.keyword.composeEnterprise}} stellt die für die Konformität mit Enterprise erforderliche Sicherheit und Isolation bereit und stellt mithilfe eines dedizierten Netzbetriebs die Leistung der bereitgestellten Datenbanken sicher. Weitere Details finden Sie in der Dokumentation zu [{{site.data.keyword.composeEnterprise}}](/docs/services/ComposeEnterprise/index.html).
 
 ## {{site.data.keyword.composeForRedis}} verwalten
 
@@ -39,7 +39,7 @@ Sie können Ihren Service über das Service-Dashboard verwalten. Hier finden Sie
 
 Weitere Informationen finden Sie im Abschnitt [Einstellungen](./dashboard-settings.html).
 
-{{site.data.keyword.composeForRedis}} nutzt Cloud Foundry-Rollen, um den Zugriff auf den Service zu verwalten. Nur Benutzer mit der Entwicklerrolle können das Service-Dashboard anzeigen oder verwenden. Weitere Informationen zu Cloud Foundry-Rollen finden Sie auf den Seiten [Cloud Foundry-Zugriff](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess) und [Cloud Foundry-Zugriff](https://console.bluemix.net/docs/iam/mngcf.html#mngcf) verwalten.
+{{site.data.keyword.composeForRedis}} nutzt Cloud Foundry-Rollen, um den Zugriff auf den Service zu verwalten. Nur Benutzer mit der Entwicklerrolle können das Service-Dashboard anzeigen oder verwenden. Weitere Informationen zu Cloud Foundry-Rollen finden Sie auf den Seiten [Cloud Foundry-Zugriff](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) und [Cloud Foundry-Zugriff](https://console.{DomainName}/docs/iam/mngcf.html#mngcf) verwalten.
 {: .tip}
 
 ## Verbindung zu {{site.data.keyword.composeForRedis}} herstellen

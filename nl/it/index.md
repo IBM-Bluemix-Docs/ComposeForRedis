@@ -27,7 +27,7 @@ Scegli un nome del servizio, una regione, un'organizzazione e uno spazio in cui 
 
 È presente un menu a discesa per selezionare la crittografia TLS/SSL. La crittografia è impostata su **True** per impostazione predefinita. Se selezioni **False** il servizio eseguirà il provisioning senza la crittografia. Questo può essere utilizzato quando i tuoi driver non gestiscono la crittografia e sei consapevole dei potenziali rischi del traffico non crittografato. 
 
-Quando esegui il provisioning della tua istanza {{site.data.keyword.composeForRedis}} puoi scegliere i piani *Standard* o *Enterprise*. Con il piano *Enterprise*, puoi eseguire il provisioning della tua istanza {{site.data.keyword.composeForRedis}} in un cluster {{site.data.keyword.composeEnterprise}} disponibile. {{site.data.keyword.composeEnterprise}} fornisce la sicurezza e l'isolamento necessari per la conformità aziendale e utilizza la rete dedicata per garantire le prestazioni dei database distribuiti. Per ulteriori dettagli, consulta la [Documentazione aziendale Compose](../ComposeEnterprise/index.html).
+Quando esegui il provisioning della tua istanza {{site.data.keyword.composeForRedis}} puoi scegliere i piani *Standard* o *Enterprise*. Con il piano *Enterprise*, puoi eseguire il provisioning della tua istanza {{site.data.keyword.composeForRedis}} in un cluster {{site.data.keyword.composeEnterprise}} disponibile. {{site.data.keyword.composeEnterprise}} fornisce la sicurezza e l'isolamento necessari per la conformità aziendale e utilizza la rete dedicata per garantire le prestazioni dei database distribuiti. Per ulteriori dettagli, consulta la [Documentazione {{site.data.keyword.composeEnterprise}}](/docs/services/ComposeEnterprise/index.html).
 
 ## Gestione di {{site.data.keyword.composeForRedis}}
 
@@ -39,7 +39,7 @@ Puoi gestire il tuo servizio dal dashboard del servizio. Qui puoi trovare le inf
 
 Per ulteriori informazioni, consulta [Impostazioni](./dashboard-settings.html).
 
-{{site.data.keyword.composeForRedis}} si basa sui ruoli Cloud Foundry per gestire l'accesso al servizio. Solo gli utenti con il ruolo di sviluppatore possono visualizzare o utilizzare il dashboard del servizio. Per ulteriori informazioni sui ruoli Cloud Foundry, consulta le pagine [Cloud Foundry access](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess) e [Managing Cloud Foundry access](https://console.bluemix.net/docs/iam/mngcf.html#mngcf).
+{{site.data.keyword.composeForRedis}} si basa sui ruoli Cloud Foundry per gestire l'accesso al servizio. Solo gli utenti con il ruolo di sviluppatore possono visualizzare o utilizzare il dashboard del servizio. Per ulteriori informazioni sui ruoli Cloud Foundry, consulta le pagine [Cloud Foundry access](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) e [Managing Cloud Foundry access](https://console.{DomainName}/docs/iam/mngcf.html#mngcf).
 {: .tip}
 
 ## Connessione a {{site.data.keyword.composeForRedis}}

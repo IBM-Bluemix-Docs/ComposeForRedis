@@ -15,20 +15,22 @@ lastupdated: "2018-01-03"
 {: #pricing}
 
 ## Configurazione di base
+
 Un servizio {{site.data.keyword.composeForRedis_full}} viene fornito con due nodi redis/sentinel, ognuno dei quali ha 256MB di memoria e 256MB di archiviazione, che equivale a 1 unità di risorse. Il servizio _include_ la replica e l'elevata disponibilità, per cui ogni unità e il prezzo per unità _include_ il costo delle risorse in entrambi i nodi.
 
 La configurazione di base inoltre include un nodo sentinel dedicato per gestire la replica e un portale HAProxy per gestire le connessioni. Il nodo sentinel e il portale HAProxy hanno 64MB di memoria ognuno.
 
-### Costo
 La configurazione del servizio di base a un prezzo fissato. Consulta i tile del catalogo {{site.data.keyword.cloud_notm}} per i prezzi di base nella tua valuta locale. Ad esempio, il prezzo di base in dollari US è $13/mese.
 
-## Opzioni di espansione
+## Aumento delle risorse
+
 Se hai bisogno di ulteriore memoria per il tuo servizio, puoi aumentare le risorse assegnate in un rapporto 1:1 di archiviazione del disco per unità di memoria. Un'unità {{site.data.keyword.composeForRedis}} è composta da 256MB di archiviazione e 256MB di memoria e ogni unità e prezzo per unità _include_ il costo di incremento delle risorse su entrambi i nodi.
 
-### Costo
+## Calcolo del costo della tua distribuzione
+{: #tiered-pricing}
+
 Ogni unità aggiuntiva (256MB di archiviazione/256MB di memoria) ha un prezzo per unità, che viene elencato nella tua valuta corrente nel tile del catalogo {{site.data.keyword.cloud_notm}} per il servizio. In dollari US ogni unità aggiuntiva costa $13. Quando la dimensione _totale_ di tutti i tuoi servizi {{site.data.keyword.composeForRedis}} aumenta, il prezzo per unità diminuisce, come mostrato nella seguente tabella dei prezzi a livelli.
 
-### Prezzi a livelli
 Numero di unità|Prezzo per unità
 ----------|-----------
 1 - 9 unità|prezzo per unità di base -- $13.00 USD/Unità

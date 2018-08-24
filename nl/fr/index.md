@@ -27,7 +27,7 @@ Choisissez un nom de service ainsi qu'une région, une organisation et un espace
 
 Une liste déroulant vous permet de sélectionner le chiffrement TLS/SSL. Par défaut, le chiffrement est défini sur **True**. Si vous le définissez sur **False**, le service sera mis à disposition sans chiffrement. Retenez cette option lorsque vos pilotes ne gèrent pas le chiffrement et que vous pressentez des risques potentiels en cas de trafic non chiffré. 
 
-Lorsque vous mettez votre instance {{site.data.keyword.composeForRedis}} à disposition, vous avez le choix entre le plan *Standard* et le plan *Entreprise*. Avec le plan *Entreprise*, vous pouvez mettre votre instance {{site.data.keyword.composeForRedis}} à disposition dans un cluster {{site.data.keyword.composeEnterprise}} disponible. {{site.data.keyword.composeEnterprise}} offre la sécurité et l'isolement requis par les normes de conformité des entreprises et utilise un réseau dédié pour garantir les performances des bases de données déployées. Pour plus d'informations, voir la [documentation Compose - Entreprise](../ComposeEnterprise/index.html).
+Lorsque vous mettez votre instance {{site.data.keyword.composeForRedis}} à disposition, vous avez le choix entre le plan *Standard* et le plan *Entreprise*. Avec le plan *Entreprise*, vous pouvez mettre votre instance {{site.data.keyword.composeForRedis}} à disposition dans un cluster {{site.data.keyword.composeEnterprise}} disponible. {{site.data.keyword.composeEnterprise}} offre la sécurité et l'isolement requis par les normes de conformité des entreprises et utilise un réseau dédié pour garantir les performances des bases de données déployées. Pour plus d'informations, voir la documentation [{{site.data.keyword.composeEnterprise}} documentation](/docs/services/ComposeEnterprise/index.html).
 
 ## Gestion de {{site.data.keyword.composeForRedis}}
 
@@ -39,7 +39,7 @@ Vous pouvez gérer votre service depuis son tableau de bord. Vous y trouverez de
 
 Pour plus d'informations, voir [Paramètres](./dashboard-settings.html).
 
-{{site.data.keyword.composeForRedis}} repose sur les rôles Cloud Foundry pour la gestion de l'accès au service. Seuls les utilisateurs dotés du rôle Développeur peuvent voir ou utiliser le tableau de bord du service. Pour plus d'informations sur les rôles Cloud Foundry, voir les pages [Accès Cloud Foundry](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess) et [Gestion de l'accès Cloud Foundry](https://console.bluemix.net/docs/iam/mngcf.html#mngcf).
+{{site.data.keyword.composeForRedis}} repose sur les rôles Cloud Foundry pour la gestion de l'accès au service. Seuls les utilisateurs dotés du rôle Développeur peuvent voir ou utiliser le tableau de bord du service. Pour plus d'informations sur les rôles Cloud Foundry, voir les pages [Accès Cloud Foundry](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) et [Gestion de l'accès Cloud Foundry](https://console.{DomainName}/docs/iam/mngcf.html#mngcf).
 {: .tip}
 
 ## Connexion à {{site.data.keyword.composeForRedis}}

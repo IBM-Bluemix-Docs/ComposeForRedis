@@ -33,7 +33,7 @@ lastupdated: "2018-01-22"
 
 ### 未加密的连接
 
-如果未通过 TLS 加密保护 Redis，即“连接字符串”显示 `redis:`，那么从显示的**命令行**字段中获取字符串并将其粘贴到终端：
+如果 Redis 不受 TLS 加密的保护，即“连接字符串”显示 `redis:`，请获取显示的**命令行**字段中的字符串，并将其粘贴到您的终端：
 ```shell
 $ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
 sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
@@ -47,26 +47,26 @@ sl-us-south-1-portal.7.dblayer.com:23870> get hello
 
 ### 启用 TLS/SSL 的连接
 
-要将 `redis-cli` 用于加密的连接，请设置可打包 TLS 加密中的 redis-cli 连接的实用程序（例如，`stunnel`）。设置 [stunnel](https://www.stunnel.org/index.html) 的步骤如下：
+要将 `redis-cli` 用于加密连接，请设置实用程序（如 `stunnel`）以将 redis-cli 连接包装在 TLS 加密中。设置 [stunnel](https://www.stunnel.org/index.html) 的步骤如下：
 
 1. 安装 stunnel
     
     使用 Linux 软件包管理器、Mac 的 Homebrew 或者获取适合您平台的[下载](https://www.stunnel.org/downloads.html)。
 
-2. 解析**连接字符串**。例如，类似以下内容的连接字符串：
+2. 解析**连接字符串**。例如，使用如下的连接字符串：
    ```text
    rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
    ```
-第二个冒号与 at 符号之间的文本是密码。@ 之后直至下一个冒号的文本是主机，此冒号之后的数字是端口号。因此，在此示例中，`PASSWORD` 是密码，`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` 是主机，而 `24370` 是端口。
+   第二个冒号和 @ 符号之间的文本是密码。@ 与下一个冒号之间的文本是主机，该冒号后面的数字是端口号。所以，在此示例中，`PASSWORD` 是密码，`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` 是主机，`24370` 是端口。
 
-3. 将此配置信息添加到 stunnel.conf 文件。配置包括服务的名称 (`[redis-cli]`)、说明此 stunnel 是 TLS 客户机的设置 (`client=yes`)、用于接受连接的 IP 地址和端口 (`accept=127.0.0.1:6830`) 以及 connect 和想要连接到的主机名及端口 (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`)。
-    ```text
+3. 将此配置信息添加到 stunnel.conf 文件中。配置是服务的名称 (`[redis-cli]`)、表示此 stunnel 将是 TLS 客户机的设置 (`client=yes`)、用于接受连接的 IP 地址和端口 (`accept=127.0.0.1:6830`)，以及要连接到的主机名和端口 (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`)。
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
     connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    如果部署以 `composedb.com` 结尾，那么它将使用 Let's Encrypt 证书，而且无需执行任何其他操作。如果以 `dblayer.com` 结尾，那么它是自签名证书，您将需要从概述的 *SSL 证书*选项卡获取证书并将其完整复制到一个文本文件；例如，`cert.crt`。然后，将此证书的路径信息添加到 stunnel.conf 文件：
+    如果部署以 `composedb.com` 结尾，它将使用 Let's Encrypt 证书，并且不必执行其他任何操作。如果以 `dblayer.com` 结尾，说明部署具有自签名证书，您需要从概述的 *SSL 证书*选项卡中获取证书信息，然后将其全部复制到一个文本文件中；例如 `cert.crt`。接下来，将此证书信息的路径添加到 stunnel.conf 文件中：
     
     ```text
     [redis-cli]

@@ -14,32 +14,32 @@ lastupdated: "2018-03-27"
 # 關於 {{site.data.keyword.composeForRedis}}
 {: #about-compose-for-redis}
 
-Redis 是開放程式碼記憶體內鍵值儲存庫。Redis 中的值可以是簡式字串、雜湊、清單，以及集合或強大的點陣圖、hyperloglogs 和地理空間索引。Redis 最適合用作應用程式快取或快速回應資料儲存庫。{{site.data.keyword.composeForRedis_full}} 提供已預先針對高可用性及磁碟內存持續性進行調整的配置，全部都透過額外安全特性鎖定。
+Redis 是開放程式碼記憶體內鍵值儲存庫。Redis 中的值可以是簡單的字串、雜湊、清單，以及集合或強大的點陣圖、hyperloglogs 和地理空間索引。Redis 最適合用作應用程式快取或快速回應資料儲存庫。{{site.data.keyword.composeForRedis_full}} 提供已預先針對高可用性及磁碟內存持續性進行調整的配置，全部都透過額外安全特性鎖定。
 {:shortdesc}
 
-**附註：**在 2016 年 9 月 14 日之前佈建且仍然作用中的任何 Compose 服務實例，仍然可以使用，而且可以在 [https://www.compose.com/](https://www.compose.com) 直接存取。在 {{site.data.keyword.cloud}} 帳戶內，可以直接存取及使用從此點往前佈建的任何 Compose 服務實例。
+**附註：**在 2016 年 9 月 14 日之前佈建且仍然作用中的任何 Compose 服務實例，仍然可以使用，而且可以在 [https://www.compose.com/](https://www.compose.com) 直接存取。從這個時間點以後佈建的任何 Compose 服務實例，可以在 {{site.data.keyword.cloud}} 帳戶內直接存取及使用。
 
 ## 建立 {{site.data.keyword.composeForRedis}} 服務實例
 
 您可以從 {{site.data.keyword.cloud_notm}} 型錄中的 [{{site.data.keyword.composeForRedis}} 頁面](https://console.{DomainName}/catalog/services/compose-for-redis/)建立 {{site.data.keyword.composeForRedis}} 服務。
 
-選擇服務名稱、地區、組織，以及要在其中佈建服務的空間。您可以使用**選取資料庫版本**欄位，從可用的資料庫版本中進行選擇。
+選擇服務名稱，以及要在其中佈建服務的地區、組織和空間。您可以使用**選取資料庫版本**欄位，從可用的資料庫版本中進行選擇。
 
 有下拉清單可選取 TLS/SSL 加密。依預設，它會設為 **True**（加密）。如果選取 **False**，則佈建服務時不會加密。當您的驅動程式無法處理加密，且您知道未加密資料流量的潛在風險時，就可以使用此項。 
 
-當您佈建 {{site.data.keyword.composeForRedis}} 實例時，可以選擇*標準* 或*企業* 方案。使用*企業* 方案，您可以將 {{site.data.keyword.composeForRedis}} 實例佈建到可用的 {{site.data.keyword.composeEnterprise}} 叢集。{{site.data.keyword.composeEnterprise}} 提供企業相符性所需的安全和隔離，並使用專用網路來確保已部署之資料庫的效能。如需詳細資料，請參閱 [Compose Enterprise 文件](../ComposeEnterprise/index.html)。
+當您佈建 {{site.data.keyword.composeForRedis}} 實例時，可以選擇*標準* 或*企業* 方案。使用*企業* 方案，您可以將 {{site.data.keyword.composeForRedis}} 實例佈建到可用的 {{site.data.keyword.composeEnterprise}} 叢集。{{site.data.keyword.composeEnterprise}} 提供企業法規遵循所需的安全和隔離，並使用專用網路來確保已部署之資料庫的效能。如需詳細資料，請參閱 [{{site.data.keyword.composeEnterprise}} 文件](/docs/services/ComposeEnterprise/index.html)。
 
 ## 管理 {{site.data.keyword.composeForRedis}}
 
 您可以從服務儀表板來管理服務。在這裡，您可以找到 {{site.data.keyword.cloud_notm}} Compose 資料庫的相關資訊，以及連接方式。您也可以：
-- 管理備份
-- 為您的服務配置更多資源
-- 變更服務密碼
+- 管理備份。
+- 為您的服務配置更多資源。
+- 變更服務密碼。
 - 使用白名單來限制對資料庫的存取權。 
 
 如需相關資訊，請參閱[設定](./dashboard-settings.html)。
 
-{{site.data.keyword.composeForRedis}} 根據 Cloud Foundry 角色來管理對服務的存取。只有具有「開發人員」角色的使用者才能看到或使用服務儀表板。如需 Cloud Foundry 角色的相關資訊，請參閱 [Cloud Foundry 存取](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess)及[管理 Cloud Foundry 存取](https://console.bluemix.net/docs/iam/mngcf.html#mngcf)頁面。
+{{site.data.keyword.composeForRedis}} 根據 Cloud Foundry 角色來管理對服務的存取權。只有具有「開發人員」角色的使用者才能看到或使用服務儀表板。如需 Cloud Foundry 角色的相關資訊，請參閱 [Cloud Foundry 存取](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess)及[管理 Cloud Foundry 存取](https://console.{DomainName}/docs/iam/mngcf.html#mngcf)頁面。
 {: .tip}
 
 ## 連接至 {{site.data.keyword.composeForRedis}}

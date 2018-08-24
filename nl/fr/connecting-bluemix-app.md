@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016,2018
-lastupdated: "2017-06-16"
+lastupdated: "2018-05-09"
 ---
 
 {:new_window: target="_blank"}
@@ -28,8 +28,12 @@ Nom de zone|Description
 `uri`|URI à utiliser pour la connexion au service et qui comprend le
 schéma (redis:), le nom et le mot de passe de l'administrateur, le nom d'hôte du serveur
 et le numéro de port auquel se connecter.
+`uri_direct_1`|Second identificateur URI qui peut être utilisé lors de la connexion au service. Le format est identique à `uri`.
+`ca_certificate_base64` `(facultatif)`|Certificat autosigné codé en base64 utilisé pour confirmer qu'une application se connecte au serveur approprié. Le certificat est présent uniquement sur les services ayant un certificat auto-signé au lieu d'un certificat Let's Encrypt. Vous devez décoder la clé avant de l'utiliser, comme illustré dans le modèle d'application.
 `uri_cli`|Ligne de commande `redis-cli` qui permet d'établir la connexion à l'instance de base de données.
 `deployment_id`|Identificateur interne du service, créé dans Compose.
 `db_type`|Type de base de données fourni par le service, en l'occurrence, `redis`.
 `name`|Nom du déploiement de base de données.
 {: caption="Tableau 1. Données d'identification Compose for Redis" caption-side="top"}
+
+**Remarque :** deux portails `haproxy` permettent d'accéder au service Redis. Les zones `uri` et `uri_direct_1` peuvent toutes deux être utilisées pour établir la connexion. Dans vos applications, utilisez `uri` ou `uri_direct_1` pour gérer les réponses aux pannes de connexion.

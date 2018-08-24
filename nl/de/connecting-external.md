@@ -33,7 +33,7 @@ In der Regel verwenden Sie den Befehl `redis-cli`, um eine manuelle Verbindung z
 
 ### Nicht verschlüsselte Verbindungen
 
-Falls Ihr Redis nicht durch TLS-Verschlüsselung geschützt ist, das heißt, wenn in der Verbindungszeichenfolge `redis:` angezeigt wird, verwenden Sie die angezeigte Zeichenfolge aus dem Feld **Befehlszeile** und fügen Sie sie in Ihrem Terminal ein: 
+Falls Ihr Redis nicht durch TLS-Verschlüsselung geschützt ist, das heißt, wenn in der Verbindungszeichenfolge `redis:` angezeigt wird, verwenden Sie die angezeigte Zeichenfolge aus dem Feld **Befehlszeile** und fügen Sie sie in Ihrem Terminal ein:
 ```shell
 $ redis-cli -h sl-us-south-1-portal.7.dblayer.com -p 23870 -a <password>
 sl-us-south-1-portal.7.dblayer.com:23870> set hello "world"
@@ -51,20 +51,20 @@ Wenn Sie die `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen,
     
     Verwenden Sie Ihren Paketmanager für Linux, Homebrew für Mac oder wählen Sie einen [Download](https://www.stunnel.org/downloads.html) für Ihre jeweilige Plattform.
 
-2. Führen Sie ein Parsing für die **Verbindungszeichenfolge** aus. Zum Beispiel für eine Verbindungszeichenfolge wie: 
+2. Führen Sie ein Parsing für die **Verbindungszeichenfolge** aus. Zum Beispiel für eine Verbindungszeichenfolge wie:
    ```text
    rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
    ```
-   Der Text zwischen dem zweiten Doppelpunkt und dem At-Zeichen (@) ist das Kennwort. Der Text nach dem At-Zeichen (@) bis zum nächsten Doppelpunkt ist der Hostname und die Anzahl nach dem Doppelpunkt ist die Portnummer. Also ist das Kennwort in diesem Beispiel `PASSWORD` und `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` ist der Hostname während `24370` die Portnummer ist. 
+   Der Text zwischen dem zweiten Doppelpunkt und dem At-Zeichen (@) ist das Kennwort. Der Text nach dem At-Zeichen (@) bis zum nächsten Doppelpunkt ist der Hostname und die Anzahl nach dem Doppelpunkt ist die Portnummer. Also ist das Kennwort in diesem Beispiel `PASSWORD` und `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` ist der Hostname während `24370` die Portnummer ist.
 
-3. Fügen Sie diese Konfigurationsdaten zur Datei 'stunnel.conf' hinzu. Die Konfiguration besteht aus einem Namen für einen Service (`[redis-cli]`), einer Einstellung, die aussagt, dass dieser 'stunnel' ein TLS-Client sein wird (`client=yes`), einer IP-Adresse und einem Port, an denen die Verbindungen akzeptiert und hergestellt werden (`accept=127.0.0.1:6830`), dem Hostnamen und dem Port, zu dem wir eine Verbindung herstellen möchten (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`). 
-    ```text
+3. Fügen Sie diese Konfigurationsdaten zur Datei 'stunnel.conf' hinzu. Die Konfiguration besteht aus einem Namen für einen Service (`[redis-cli]`), einer Einstellung, die aussagt, dass dieser 'stunnel' ein TLS-Client sein wird (`client=yes`), einer IP-Adresse und einem Port, an denen die Verbindungen akzeptiert und hergestellt werden (`accept=127.0.0.1:6830`), dem Hostnamen und dem Port, zu dem wir eine Verbindung herstellen möchten (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
     connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-    Wenn Ihre Bereitstellung mit `composedb.com` endet, verwendet sie 'Let's Encrypt'-Zertifikate und Sie müssen nichts unternehmen. Wenn sie mit `dblayer.com` endet, dann verwendet die Bereitstellung selbst signierte Zertifikate und Sie müssen die Zertifikatinformationen von der Registerkarte *SSL-Zertifikat* der Übersicht abrufen und alle Informationen in eine Textdatei kopieren. Diese kann zum Beispiel den Namen `cert.crt` erhalten. Fügen Sie dann den Pfad zu diesen Zertifikatsinformationen zur Datei 'stunnel.conf' hinzu. 
+    Wenn Ihre Bereitstellung mit `composedb.com` endet, verwendet sie Zertikfikate von Let's Encrypt und Sie müssen keine weiteren Schritte unternehmen. Wenn sie mit `dblayer.com` endet, dann verwendet die Bereitstellung selbst signierte Zertifikate und Sie müssen die Zertifikatinformationen von der Registerkarte *SSL-Zertifikat* der Übersicht abrufen und alle Informationen in eine Textdatei kopieren. Diese kann zum Beispiel den Namen `cert.crt` erhalten. Fügen Sie dann den Pfad zu diesen Zertifikatsinformationen zur Datei 'stunnel.conf' hinzu.
     
     ```text
     [redis-cli]
@@ -79,7 +79,7 @@ Wenn Sie die `redis-cli` mit einer verschlüsselten Verbindung verwenden wollen,
 3. Führen Sie 'stunnel' aus.
     Geben Sie den Befehl `stunnel` in der Befehlszeile ein. Das Programm wird sofort im Hintergrund ausgeführt.
     
-4. Führen Sie in einem neuen Terminalfenster `redis-cli` aus und verweisen Sie dabei auf den lokalen Host und den Port und authentifizieren Sie sich mit den Berechtigungsnachweisen der Bereitstellung. 
+4. Führen Sie in einem neuen Terminalfenster `redis-cli` aus und verweisen Sie dabei auf den lokalen Host und den Port und authentifizieren Sie sich mit den Berechtigungsnachweisen der Bereitstellung.
     ```shell
     redis-cli -p 6830 -a <password>
     ```

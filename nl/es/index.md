@@ -27,7 +27,7 @@ Elija un nombre de servicio, y una región, organización y espacio en los que s
 
 Hay un desplegable para seleccionar el cifrado TLS/SSL. Se establece en el cifrado **True** de forma predeterminada. Si selecciona **False**, el servicio se suministrará sin cifrado. Esto puede utilizarse cuando los controladores no manejan el cifrado y es consciente de los riesgos potenciales de tráfico cifrado. 
 
-Cuando suministre la instancia de {{site.data.keyword.composeForRedis}}, puede elegir los planes *Estándar* o *Empresa*. Con el plan *Empresa*, puede suministrar la instancia de {{site.data.keyword.composeForRedis}} en un clúster disponible de {{site.data.keyword.composeEnterprise}}. {{site.data.keyword.composeEnterprise}} proporciona la seguridad y nivel de aislamiento necesarios para el cumplimiento de las reglas empresariales y utiliza redes dedicadas para garantizar el rendimiento de las bases de datos desplegadas. Consulte la [documentación de Compose Enterprise](../ComposeEnterprise/index.html) para ver más detalles.
+Cuando suministre la instancia de {{site.data.keyword.composeForRedis}}, puede elegir los planes *Estándar* o *Empresa*. Con el plan *Empresa*, puede suministrar la instancia de {{site.data.keyword.composeForRedis}} en un clúster disponible de {{site.data.keyword.composeEnterprise}}. {{site.data.keyword.composeEnterprise}} proporciona la seguridad y nivel de aislamiento necesarios para el cumplimiento de las reglas empresariales y utiliza redes dedicadas para garantizar el rendimiento de las bases de datos desplegadas. Consulte la [documentación de {{site.data.keyword.composeEnterprise}}](/docs/services/ComposeEnterprise/index.html) para obtener más detalles.
 
 ## Gestión de {{site.data.keyword.composeForRedis}}
 
@@ -39,7 +39,7 @@ Puede gestionar el servicio desde el panel de control del servicio. Aquí encont
 
 Para obtener más información, consulte [Valores](./dashboard-settings.html).
 
-{{site.data.keyword.composeForRedis}} utiliza roles de Cloud Foundry para gestionar el acceso al servicio. Solo los usuarios con el rol de desarrollador pueden ver o utilizar el panel de control del servicio. Para obtener más información sobre los roles de Cloud Foundry, consulte las páginas [Acceso de Cloud Foundry](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess) y [Gestión del acceso de Cloud Foundry](https://console.bluemix.net/docs/iam/mngcf.html#mngcf).
+{{site.data.keyword.composeForRedis}} utiliza roles de Cloud Foundry para gestionar el acceso al servicio. Solo los usuarios con el rol de desarrollador pueden ver o utilizar el panel de control del servicio. Para obtener más información sobre los roles de Cloud Foundry, consulte las páginas [Acceso de Cloud Foundry](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) y [Gestión del acceso de Cloud Foundry](https://console.{DomainName}/docs/iam/mngcf.html#mngcf).
 {: .tip}
 
 ## Conexión a {{site.data.keyword.composeForRedis}}

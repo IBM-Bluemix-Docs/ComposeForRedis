@@ -55,13 +55,13 @@ Per utilizzare `redis-cli` con una connessione crittografata, configura un progr
    ```text
    rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
    ```
-  Il testo tra il secondo carattere due punti e il simbolo @ è la password. Il testo dopo il simbolo @ e fino al successivo carattere due punti è l'host e il numero dopo tale carattere due punti è il numero porta. Quindi, nell'esempio, `PASSWORD` è la password, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` è l'host e `24370` p la porta.
+   Il testo tra il secondo carattere due punti e il simbolo @ è la password. Il testo dopo il simbolo @ e fino al successivo carattere due punti è l'host e il numero dopo tale carattere due punti è il numero porta. Quindi, nell'esempio, `PASSWORD` è la password, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` è l'host e `24370` p la porta.
 
 3. Aggiungi queste informazioni di configurazione al file stunnel.conf. La configurazione è un nome per un servizio (`[redis-cli]`), un'impostazione che indica che questo stunnel sarà un client TLS (`client=yes`), un indirizzo IP e una porta su cui accettare le connessioni (`accept=127.0.0.1:6830`) e connect, il nome host e la porta a cui vogliamo stabilire la connessione (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
-    ```text
+    ````text
     [redis-cli]
-    client=yes
-    accept=127.0.0.1:6830
+    client=yes  
+    accept=127.0.0.1:6830  
     connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
     Se la tua distribuzione termina con `composedb.com`, utilizza i certificati Let's Encrypt e non occorre fare altro. Se finisce con `dblayer.com`, ha un certificato autofirmato; dovrai ottenere le informazioni sul certificato dalla scheda *SSL Certificate* della panoramica e copiarlo integralmente in un file di testo, ad esempio `cert.crt`. Aggiungi quindi il percorso a queste informazioni sul certificato nel file stunnel.conf:

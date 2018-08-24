@@ -15,20 +15,22 @@ lastupdated: "2018-01-03"
 {: #pricing}
 
 ## Configuration de base
+
 Un service {{site.data.keyword.composeForRedis_full}} démarre avec deux noeuds redis/sentinel, dotés chacun de 256 Mo de mémoire et de 256 Mo de stockage, ce qui équivaut à 1 unité de ressources. Le service _inclut_ la réplication et la haute disponibilité, de sorte que chaque unité et le prix unitaire _incluent_ le coût des ressources dans les deux noeuds.
 
 La configuration de base inclut également un noeud sentinel dédié pour la gestion de la réplication et un portail HAProxy pour la gestion des connexions. Le noeud sentinel et le portail HAProxy disposent chacun de 64 Mo de mémoire.
 
-### Coût
 Le prix de la configuration du service de base est défini. Consultez les vignettes du catalogue sur {{site.data.keyword.cloud_notm}} pour connaître la tarification de base dans votre devise locale. Par exemple, le prix de base en dollars US est de 13 $/mois.
 
-## Options d'extension
+## Augmentation des ressources
+
 Si vous avez besoin de davantage de mémoire pour votre service, vous pouvez augmenter les ressources allouées selon un rapport de 1 pour 1 en stockage sur disque et unité de mémoire. Une unité {{site.data.keyword.composeForRedis}} se compose de 256 Mo de stockage et de 256 Mo de mémoire, de sorte que chaque unité et le prix unitaire _incluent_ le coût d'accroissement des ressources dans les trois noeuds de données.
 
-### Coût
+## Calcul du coût de votre déploiement
+{: #tiered-pricing}
+
 Chaque unité supplémentaire (256 Mo de stockage et 256 Mo de mémoire) a un prix unitaire indiqué dans votre devise locale dans la vignette du catalogue {{site.data.keyword.cloud_notm}} du service. En dollars US, chaque unité supplémentaire coûte 13 $. Le prix unitaire diminue proportionnellement à l'augmentation de la taille _totale_ de vos services {{site.data.keyword.composeForRedis}}, selon le barème indiqué dans le tableau de tarification différenciée ci-dessous.
 
-### Tarification différenciée
 Nombre d'unités|Prix unitaire
 ----------|-----------
 1 - 9 unités|Prix unitaire de base -- soit 13,00 USD/unité

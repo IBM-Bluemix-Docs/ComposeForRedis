@@ -27,7 +27,7 @@ Redis 是一个开放式源代码内存中键值存储库。Redis 中的值可�
 
 有一个下拉列表可用于选择 TLS/SSL 加密。缺省情况下，TLS/SSL 加密设置为 **True**。如果选择 **False**，那么将在不加密的情况下供应服务。在驱动程序不处理加密，并且您了解未加密流量的潜在风险时，可以这样做。 
 
-供应 {{site.data.keyword.composeForRedis}} 实例时，可以选择*标准*或*企业*套餐。使用*企业*套餐，您可以将 {{site.data.keyword.composeForRedis}} 实例供应到可用的 {{site.data.keyword.composeEnterprise}} 集群中。{{site.data.keyword.composeEnterprise}} 提供企业合规性所需的安全性和隔离，并使用专用网络来确保已部署的数据库的性能。有关更多详细信息，请参阅 [Compose Enterprise 文档](../ComposeEnterprise/index.html)。
+供应 {{site.data.keyword.composeForRedis}} 实例时，可以选择*标准*或*企业*套餐。使用*企业*套餐，您可以将 {{site.data.keyword.composeForRedis}} 实例供应到可用的 {{site.data.keyword.composeEnterprise}} 集群中。{{site.data.keyword.composeEnterprise}} 提供企业合规性所需的安全性和隔离，并使用专用网络来确保已部署的数据库的性能。有关更多详细信息，请参阅 [{{site.data.keyword.composeEnterprise}} 文档](/docs/services/ComposeEnterprise/index.html)。
 
 ## 管理 {{site.data.keyword.composeForRedis}}
 
@@ -39,7 +39,7 @@ Redis 是一个开放式源代码内存中键值存储库。Redis 中的值可�
 
 有关更多信息，请参阅[设置](./dashboard-settings.html)。
 
-{{site.data.keyword.composeForRedis}} 依赖于 Cloud Foundry 角色来管理对服务的访问权。只有具有开发者角色的用户才能查看或使用服务仪表板。有关 Cloud Foundry 角色的更多信息，请参阅 [Cloud Foundry 访问权](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess)和[管理 Cloud Foundry 访问权](https://console.bluemix.net/docs/iam/mngcf.html#mngcf)页面。
+{{site.data.keyword.composeForRedis}} 依赖于 Cloud Foundry 角色来管理对服务的访问权。只有具有开发者角色的用户才能查看或使用服务仪表板。有关 Cloud Foundry 角色的更多信息，请参阅 [Cloud Foundry 访问权](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess)和[管理 Cloud Foundry 访问权](https://console.{DomainName}/docs/iam/mngcf.html#mngcf)页面。
 {: .tip}
 
 ## 连接到 {{site.data.keyword.composeForRedis}}

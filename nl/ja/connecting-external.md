@@ -45,26 +45,26 @@ sl-us-south-1-portal.7.dblayer.com:23870> get hello
 
 ### TLS /SSL 対応接続
 
-暗号化された接続で `redis-cli` を使用するには、redis-cli 接続を TLS 暗号化でラップできる `stunnel` などのユーティリティーをセットアップします。[stunnel](https://www.stunnel.org/index.html) をセットアップする手順は、以下のとおりです。
+暗号化された接続で `redis-cli` を使用するには、redis-cli 接続を TLS 暗号化でラップできる `stunnel` などのユーティリティーをセットアップします。 [stunnel](https://www.stunnel.org/index.html) をセットアップする手順は、以下のとおりです。
 
 1. stunnel をインストールします。
     
     Linux 用のパッケージ・マネージャー、Mac 用の Homebrew を使用するか、ご使用のプラットフォームに適した[ダウンロード](https://www.stunnel.org/downloads.html)を取得します。
 
-2. **「接続ストリング」**を解析します。例えば、以下のような接続ストリングがあるとします。
+2. **「接続ストリング」**を解析します。 例えば、以下のような接続ストリングがあるとします。
    ```text
    rediss://admin:PASSWORD@portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
    ```
-2 番目のコロンとアットマークの間のテキストがパスワードです。@ の後の次のコロンまでのテキストがホスト、そのコロンの後の番号がポート番号です。つまり、この例では、`PASSWORD` がパスワード、`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` がホスト、`24370` がポートです。
+   2 番目のコロンとアットマークの間のテキストがパスワードです。 @ の後の次のコロンまでのテキストがホスト、そのコロンの後の番号がポート番号です。 つまり、この例では、`PASSWORD` がパスワード、`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` がホスト、`24370` がポートです。
 
-3. この構成情報を stunnel.conf ファイルに追加します。この構成は、サービスの名前 (`[redis-cli]`)、この stunnel が TLS クライアントになるという設定 (`client=yes`)、接続を受け入れる IP アドレスとポート (`accept=127.0.0.1:6830`)、接続しようとしているホスト名とポート (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`) です。
-    ```text
+3. この構成情報を stunnel.conf ファイルに追加します。 この構成は、サービスの名前 (`[redis-cli]`)、この stunnel が TLS クライアントになるという設定 (`client=yes`)、接続を受け入れて接続する IP アドレスとポート (`accept=127.0.0.1:6830`)、接続しようとしているホスト名とポート (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`) です。
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
     connect=portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370
     ```
-末尾が `composedb.com` であるデプロイメントでは、Let's Encrypt 証明書が使用されるので、これ以上の操作は必要ありません。末尾が `dblayer.com` である場合は、自己署名証明書があるので、概要の*「SSL 証明書」*タブから証明書情報を取得し、それをすべてテキスト・ファイル (`cert.crt` など) にコピーする必要があります。そして、その証明書情報へのパスを stunnel.conf ファイルに追加します。
+    末尾が `composedb.com` であるデプロイメントでは、Let's Encrypt 証明書が使用されるので、これ以上の操作は必要ありません。 末尾が `dblayer.com` である場合は、自己署名証明書があるので、概要の*「SSL 証明書」*タブから証明書情報を取得し、それをすべてテキスト・ファイル (`cert.crt` など) にコピーする必要があります。 そして、その証明書情報へのパスを stunnel.conf ファイルに追加します。
     
     ```text
     [redis-cli]
@@ -76,7 +76,7 @@ sl-us-south-1-portal.7.dblayer.com:23870> get hello
     CAfile=/path/to/redis/cert.crt
     ```
 
-3. stunnel を実行します。コマンド・ラインで `stunnel` コマンドを入力します。すぐにバックグラウンドで実行されます。
+3. stunnel を実行します。コマンド・ラインで `stunnel` コマンドを入力します。 すぐにバックグラウンドで実行されます。
     
 4. 新しい端末ウィンドウで、ローカル・ホストとポートを指定した `redis-cli` を実行し、デプロイメントの資格情報で認証します。
     ```shell

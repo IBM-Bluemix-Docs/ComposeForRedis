@@ -58,7 +58,7 @@ sl-us-south-1-portal.7.dblayer.com:23870> get hello
    두 번째 콜론과 @ 기호 사이의 텍스트가 비밀번호입니다. @ 다음부터 다음 콜론까지의 텍스트는 호스트이며 이 콜론 다음의 숫자는 포트 번호입니다. 따라서 이 예에서는 `PASSWORD`가 비밀번호이고 `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com`이 호스트이며 `24370`이 포트입니다.
 
 3. 이 구성 정보를 stunnel.conf 파일에 추가하십시오. 구성은 서비스의 이름(`[redis-cli]`), 이 stunnel이 TLS 클라이언트임을 알리는 설정(`client=yes`), 연결을 허용할 IP 주소 및 포트(`accept=127.0.0.1:6830`), connect 및 연결하려는 호스트 이름과 포트(`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`)입니다.
-````text
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  

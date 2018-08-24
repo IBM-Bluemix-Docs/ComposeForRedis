@@ -27,7 +27,7 @@ Redis는 오픈 소스인 인메모리 키-값 저장소입니다. Redis의 값�
 
 TLS/SSL 암호화 선택을 위한 드롭 다운은 없습니다. 암호화는 기본적으로 **True**로 설정됩니다. **False**를 선택하면 서비스가 암호화 없이 프로비저닝됩니다. 이는 드라이버가 암호화를 처리하지 않으며 사용자가 암호화되지 않은 트래픽의 잠재적 위험에 대해 알고 있는 경우 사용할 수 있습니다. 
 
-{{site.data.keyword.composeForRedis}} 인스턴스를 프로비저닝할 때 *표준* 또는 *엔터프라이즈* 플랜을 선택할 수 있습니다. *엔터프라이즈* 플랜을 사용하면 {{site.data.keyword.composeForRedis}} 인스턴스를 사용 가능한 {{site.data.keyword.composeEnterprise}} 클러스터에 프로비저닝할 수 있습니다. {{site.data.keyword.composeEnterprise}}는 엔터프라이즈 준수에 필요한 보안 및 격리를 제공하며 전용 네트워킹을 사용하여 배치된 데이터베이스의 성능을 보장합니다. 세부사항은 [Compose Enterprise 문서](../ComposeEnterprise/index.html)를 참조하십시오.
+{{site.data.keyword.composeForRedis}} 인스턴스를 프로비저닝할 때 *표준* 또는 *엔터프라이즈* 플랜을 선택할 수 있습니다. *엔터프라이즈* 플랜을 사용하면 {{site.data.keyword.composeForRedis}} 인스턴스를 사용 가능한 {{site.data.keyword.composeEnterprise}} 클러스터에 프로비저닝할 수 있습니다. {{site.data.keyword.composeEnterprise}}는 엔터프라이즈 준수에 필요한 보안 및 격리를 제공하며 전용 네트워킹을 사용하여 배치된 데이터베이스의 성능을 보장합니다. 세부사항은 [{{site.data.keyword.composeEnterprise}} 문서](/docs/services/ComposeEnterprise/index.html)를 참조하십시오.
 
 ## {{site.data.keyword.composeForRedis}} 관리
 
@@ -39,7 +39,7 @@ TLS/SSL 암호화 선택을 위한 드롭 다운은 없습니다. 암호화는 �
 
 자세한 정보는 [설정](./dashboard-settings.html)을 참조하십시오.
 
-{{site.data.keyword.composeForRedis}}는 Cloud Foundry 역할에 의존하여 서비스에 대한 액세스를 관리합니다. 개발자 역할이 있는 사용자만 서비스 대시보드를 보거나 사용할 수 있습니다. Cloud Foundry 역할에 대한 자세한 정보는 [Cloud Foundry 액세스](https://console.bluemix.net/docs/iam/cfaccess.html#cfaccess) 및 [Cloud Foundry 액세스 관리](https://console.bluemix.net/docs/iam/mngcf.html#mngcf) 페이지를 참조하십시오.
+{{site.data.keyword.composeForRedis}}는 Cloud Foundry 역할에 의존하여 서비스에 대한 액세스를 관리합니다. 개발자 역할이 있는 사용자만 서비스 대시보드를 보거나 사용할 수 있습니다. Cloud Foundry 역할에 대한 자세한 정보는 [Cloud Foundry 액세스](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) 및 [Cloud Foundry 액세스 관리](https://console.{DomainName}/docs/iam/mngcf.html#mngcf) 페이지를 참조하십시오.
 {: .tip}
 
 ## {{site.data.keyword.composeForRedis}}에 연결

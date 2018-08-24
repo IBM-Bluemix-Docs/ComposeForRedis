@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016,2018
-lastupdated: "2017-06-16"
+lastupdated: "2018-05-09"
 ---
 
 {:new_window: target="_blank"}
@@ -26,8 +26,12 @@ lastupdated: "2017-06-16"
 필드 이름|설명
 ----------|-----------
 `uri`|서비스에 연결하는 데 사용할 URI로 스키마(redis:), 관리 사용자 이름과 비밀번호, 서버의 호스트 이름, 연결할 포트 번호를 포함합니다.
+`uri_direct_1`|서비스에 연결하는 데 사용할 수 있는 2차 URI입니다. 형식은 `uri`와 같습니다.
+`ca_certificate_base64``(선택사항)`|애플리케이션이 적합한 서버에 연결되었는지 확인하는 데 사용되는 base64로 인코딩된 자체 서명된 인증서입니다. 인증서는 Let's Encrypt 인증서가 아니라 자체 서명된 서비스에만 있습니다. 샘플 애플리케이션에 표시된 대로 사용하기 전에 키를 디코딩해야 합니다.
 `uri_cli`|데이터베이스 인스턴스에 연결하는 `redis-cli` 명령행입니다.
 `deployment_id`|Compose에서 작성된 서비스의 내부 ID입니다.
 `db_type`|서비스에서 제공하는 데이터베이스의 유형입니다. 이 경우 `redis`입니다.
 `name`|데이터베이스 배치 이름입니다.
 {: caption="표 1. Compose for Redis 신임 정보" caption-side="top"}
+
+**참고:** 두 개의 `haproxy` 포털에서 Redis 서비스에 대한 액세스를 제공합니다. `uri`와 `uri_direct_1` 모두 연결하는 데 사용할 수 있습니다. 애플리케이션에서 `uri`와 `uri_direct_1`을 서로 전환하여 연결 실패에 대한 응답을 관리하십시오.

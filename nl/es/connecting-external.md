@@ -58,7 +58,7 @@ Para utilizar `redis-cli` con una conexión cifrada, configure un programa de ut
    El texto entre los segundos dos puntos y el símbolo de arroba es la contraseña. El texto que aparece tras la @ y hasta los siguientes dos puntos es el host, y el número que aparece tras esos dos puntos es el número de puerto. Por lo tanto, en el ejemplo, `PASSWORD` es la contraseña, `portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com` es el host y `24370` es el puerto.
 
 3. Añada esta información de configuración al archivo stunnel.conf. La configuración es un nombre para un servicio (`[redis-cli]`), un valor que indica que este stunnel será un cliente TLS (`client=yes`), una dirección IP y puerto para aceptar conexiones en (`accept=127.0.0.1:6830`) y conectarse, el nombre de host y el puerto al que desea conectarse (`connect=`portal972-7.bmix-lon-yp-38898e17-ff6f-4340-9da8-2ba24c41e6d8.composeci-us-ibm-com.composedb.com:24370`).
-    ```text
+    ````text
     [redis-cli]
     client=yes  
     accept=127.0.0.1:6830  
@@ -72,7 +72,7 @@ Para utilizar `redis-cli` con una conexión cifrada, configure un programa de ut
     accept=127.0.0.1:6830  
     connect=sl-us-south-1-portal.7.dblayer.com:23870
     verify=2  
-    checkHost=sl-us-south-1-portal.7.dblayer.com 
+    checkHost=sl-us-south-1-portal.7.dblayer.com
     CAfile=/path/to/redis/cert.crt
     ```
 
