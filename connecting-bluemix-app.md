@@ -13,11 +13,11 @@ lastupdated: "2018-05-09"
 
 # Connecting an {{site.data.keyword.cloud_notm}} application
 
-To connect an {{site.data.keyword.cloud}} application to your service, use the service credentials that are created when the service is provisioned. The sample app demonstrates how to use Node.js to connect to an {{site.data.keyword.composeForRedis_full}} service using the provided credentials, and how to create a database and read from and write to the database.
+To connect an {{site.data.keyword.cloud}} application to your service, use the service credentials that are created when the service is provisioned. 
 
-## Connecting using the 'Hello World' sample app
+## Using the 'Hello World' sample app
 
-The [compose-redis-helloworld-nodejs](https://github.com/IBM-Bluemix/compose-redis-helloworld-nodejs) sample app demonstrates how to use Node.js to connect to a {{site.data.keyword.composeForRedis}} service using the provided credentials. The application creates, reads from, and writes to a database
+The [sample app](https://github.com/IBM-Bluemix/compose-redis-helloworld-nodejs) demonstrates how to use Node.js and your service credentials to connect to a {{site.data.keyword.composeForRedis}} service. The application uses a web interface to create, read from, and write data to a database.
 
 Download the sample app and follow the instructions in the readme file. Then, in your application details page in {{site.data.keyword.cloud_notm}}, click **View APP** to view the contents of the *examples* table.
 
@@ -25,7 +25,7 @@ Download the sample app and follow the instructions in the readme file. Then, in
 
 Field Name|Description
 ----------|-----------
-`uri`|The URI to be used when connecting to the service, which includes the schema (redis:), admin user name and password, the host name of the server and the port number to connect to.
+`uri`|The URI to be used when connecting to the service. It includes the schema (redis:), admin user name and password, the host name of the server and the port number to connect to.
 `uri_direct_1`|A secondary URI that can be used when connecting to the service. The format is the same as for `uri`.
 `ca_certificate_base64` `(optional)`|A base64 encoded, self-signed certificate that is used to confirm that an application is connecting to the appropriate server. The certificate is only present on services that have a self-signed instead of a Let's Encrypt certificate. You need to decode the key before you can use it, as shown in the sample application.
 `uri_cli`|A `redis-cli` command line that connects to the database instance.

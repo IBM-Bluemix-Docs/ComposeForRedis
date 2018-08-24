@@ -23,13 +23,13 @@ Deployable Versions| Preferred Version
 
 ## Preferred Version
 
-The preferred version is typically the newest version of the Redis database that is available for {{site.data.keyword.composeForRedis}}. It is the version that is the default in the drop-down version selector on the catalog page. It is also the version that is automatically provisioned by API if no version is specified in the call.
+The preferred version is typically the newest version of the Redis database that is available for {{site.data.keyword.composeForRedis}}. It's the default version in the drop-down version selector on the catalog page, and the version that is automatically provisioned by API if no version is specified in the call.
 
 ### New Preferred Version Protocol
 
-When a new version is made available, its release is announced and it is available for deployment. Following release there is an approximately 7-day window where the newest version is available, but it is not the preferred version. This window gives you a chance to deploy and test the new version, while the current version is still available. At the end of the 7-day window the new version is set as the preferred version, or a new date for this change is announced.
+When a new version is made available, it is announced and made available for deployment. An approximately 7-day window follows the release; during this period the newest version is available, but isn't the preferred version. This window gives you a chance to deploy and test the new version, while the current version is still available. At the end of the 7-day window, the new version is set as the preferred version, or a new date for this change is announced.
 
 The list of versions available for provisions is on the {{site.data.keyword.composeForRedis}} [catalog page](https://console.{DomainName}/catalog/services/compose-for-redis).
 
-To get a current list of available versions for your {{site.data.keyword.composeForRedis}} service you can use the 
+To get a current list of available versions for your {{site.data.keyword.composeForRedis}} service, you can use the 
 [GET /2016-07/deployments/:id/versions](https://apidocs.compose.com/v1.0/reference#2016-07-get-deployments-versions) endpoint.

@@ -13,7 +13,7 @@ lastupdated: "2018-15-07"
 
 # Service Overview
 
-The _Overview_ page shows you information about your {{site.data.keyword.cloud}} Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for connection strings that you can use with tools or make use of tools to connect to your database.
+The _Overview_ page shows you information about your {{site.data.keyword.cloud}} Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for connection strings that you can use to connect to your database.
 
 ## Deployment Details
 
@@ -23,7 +23,7 @@ The _Deployment Details_ panel shows details of your service.
 
 ### Type
 
-The type of database that is offered by the service, and the database version that your service uses. If a more recent database version is available, a notification is displayed, together with a link to the [Upgrade version](/docs/services/ComposeForRedis/dashboard-settings.html#upgrade-version) section of your service dashboard.
+The type of database that is offered by the service, and the database version that your service uses. If a more recent database version is available, a notification is displayed, and a link to the [Upgrade version](/docs/services/ComposeForRedis/dashboard-settings.html#upgrade-version) section of your service dashboard.
 
 ### ID
 
@@ -31,7 +31,7 @@ An internal identifier for the service.
 
 ### Usage
 
-The size of your database and the amount of storage provided by your service plan.
+The size of your database and the amount of storage that is provided by your service plan.
 
 ## Current Jobs
 
@@ -39,17 +39,17 @@ Making administrative changes to your service (such as scaling, or taking a manu
 
 ## Connecting
 
-There are two ways of connecting an external application to your database. You can either connect using a **Connection String** or with a **Command Line**. Both are provided on your service dashboard overview.
+You can connect an external application to your database in two ways. You can either connect by using a **Connection String** or with a **Command Line**. Both are provided on your service dashboard overview.
 
 ### HTTPS
 
-The **HTTPS** connection string can be used by some client libraries and contains all the information needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](./connecting-external.html).
+The **HTTPS** connection string can be used by some client libraries and contains all the information that is needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](./connecting-external.html).
 
-**Please Note:** If you _un_checked the TLS/SSL-enabled box when the service was provisioned, this connection is **not** TLS/SSL secured. 
+**Note:** If you _un_checked the TLS/SSL-enabled box when the service was provisioned, this connection is **not** TLS/SSL secured. 
 
 ### Command Line
 
-The **Command Line** is a preformatted command which will invoke `redis-cli` with the correct parameters. To use it, you'll need to have the Redis client tools installed on the local system. You can find out more about how to do this in [Connecting an external application](./connecting-external.html).
+The **Command Line** is a preformatted command that invokes `redis-cli` with the correct parameters. To use it, you need to install Redis client tools on the local system. You can find out more about using the command in [Connecting an external application](./connecting-external.html).
 
 ## Instance Administration API
 
@@ -57,7 +57,7 @@ You can manage your {{site.data.keyword.composeForRedis}} service through the {{
 
 ### Foundation Endpoint
 
-The foundation endpoint is composed of the region the service resides in and the service instance id. It will be at the start of every endpoint.
+The foundation endpoint is composed of the region the service resides in and the service instance ID. It is at the start of every endpoint.
 
 ### Deployment ID
 

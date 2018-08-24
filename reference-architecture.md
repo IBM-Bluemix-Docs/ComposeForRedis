@@ -16,13 +16,13 @@ lastupdated: "2018-06-13"
 
 ## Replication
 
-An {{site.data.keyword.composeForRedis_full}} service uses [Redis Sentinel](https://redis.io/topics/sentinel) to provide high-availability and monitoring for your databases. Each service consists of three data nodes; all three run the sentinel process and two run the redis process. When you select a region where the serivce is deployed, the three nodes spread over the region's availablity zones, and your data is replicated across them. Should one data member become unreachable, your cluster will continue to operate normally.
+An {{site.data.keyword.composeForRedis_full}} service uses [Redis Sentinel](https://redis.io/topics/sentinel) to provide high-availability and monitoring for your databases. Each service consists of three data nodes, and all three run the sentinel process and two run the redis process. When you select a region where the service is deployed, the three nodes are spread over the region's availability zones, and your data is replicated across them. If a data member becomes unreachable, your cluster continues to operate normally.
 
 ## Disk Encryption
 
-All {{site.data.keyword.composeForRedis}} services all have encryption at rest. Your data resides on servers that have volume-level encryption enabled. 
+All {{site.data.keyword.composeForRedis}} services all have encryption at rest. Your data resides on servers that are enabled with volume-level encryption. 
 
-Because this is {{site.data.keyword.composeForRedis}} is a managed service, it is possible for {{site.data.keyword.cloud}} Compose operators to see data. In addition to the disk encryption, we recommend that if you are storing personal information in your database that you encrypt information before storing it or by using extensions or features to enable encryption on the database itself. While these methods may impact usability or performance, it is good practice to ensure that personal information is protected with encryption.
+Because {{site.data.keyword.composeForRedis}} is a managed service, it's possible for {{site.data.keyword.cloud}} Compose operators to see data. If you're storing personal information in your database, encrypt it before you store it, or use extensions or features to enable encryption on the database itself. While these methods can impact usability or performance, it's good practice to ensure that personal information is protected with encryption.
 
 ## Auto-scaling
 
@@ -30,5 +30,5 @@ Resources are scaled automatically based on the total memory use of the Redis da
 
 Auto-scaling is designed to respond to the short-to-medium term trends of your database. Every minute, your service is checked and if it is running short on RAM, then more units are allocated to the deployment. 
 
-Auto-scaling does not scale down deployments where disk/memory usage has shrunk. The resources provisioned to your databases will remain for your future needs, or until you scale down your deployment manually.
-{: .tip}
+Auto-scaling does not scale down deployments when disk or memory usage reduces. Resources remain for your future needs, or until you scale down your deployment manually.
+{: tip}
