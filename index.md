@@ -21,7 +21,7 @@ Redis is an open source, in-memory, key-value store. Values in Redis can be simp
 
 ## Creating a {{site.data.keyword.composeForRedis}} service instance
 
-You can create a {{site.data.keyword.composeForRedis}} service from the [{{site.data.keyword.composeForRedis}} page](https://console.{DomainName}/catalog/services/compose-for-redis/) in the {{site.data.keyword.cloud_notm}} catalog.
+You can create a {{site.data.keyword.composeForRedis}} service from the [{{site.data.keyword.composeForRedis}} page](https://{DomainName}/catalog/services/compose-for-redis/) in the {{site.data.keyword.cloud_notm}} catalog.
 
 Choose a service name, and a region, organization, and space to provision the service in. You can use the **Select a database version** field to choose from the available database versions.
 
@@ -39,7 +39,7 @@ You can manage your service from the service dashboard. Here you can find inform
 
 For more information, see [Settings](./dashboard-settings.html).
 
-{{site.data.keyword.composeForRedis}} relies on Cloud Foundry roles to manage access to the service. Only users with the Developer role can see or use the service dashboard. For more information about Cloud Foundry roles, see the [Cloud Foundry access](https://console.{DomainName}/docs/iam/cfaccess.html#cfaccess) and the [Managing Cloud Foundry access](https://console.{DomainName}/docs/iam/mngcf.html#mngcf) pages.
+{{site.data.keyword.composeForRedis}} relies on Cloud Foundry roles to manage access to the service. Only users with the Developer role can see or use the service dashboard. For more information about Cloud Foundry roles, see the [Cloud Foundry access](https://{DomainName}/docs/iam/cfaccess.html#cfaccess) and the [Managing Cloud Foundry access](https://{DomainName}/docs/iam/mngcf.html#mngcf) pages.
 {: tip}
 
 ## Connecting to {{site.data.keyword.composeForRedis}}
