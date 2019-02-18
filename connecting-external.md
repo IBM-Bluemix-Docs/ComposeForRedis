@@ -12,7 +12,7 @@ lastupdated: "2018-01-22"
 {:pre: .pre}
 
 # Connecting an external application
-{: #connecting-external-app}
+{: #external-app}
 
 You can connect an external application to {{site.data.keyword.composeForRedis_full}} in two ways.
 

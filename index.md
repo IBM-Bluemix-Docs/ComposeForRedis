@@ -12,7 +12,7 @@ lastupdated: "2018-03-27"
 {:pre: .pre}
 
 # About {{site.data.keyword.composeForRedis}}
-{: #about-compose-for-redis}
+{: #about}
 
 Redis is an open source, in-memory, key-value store. Values in Redis can be simple strings, hashes, lists, and sets or powerful bitmaps, hyperloglogs, and geospatial indexes. Redis is ideal as an application cache or quick response data store. {{site.data.keyword.composeForRedis_full}} gives you a configuration that is pre-tuned for high availability and on-disk persistence, all locked down with extra security features.
 {:shortdesc}
@@ -37,9 +37,9 @@ You can manage your service from the service dashboard. Here you can find inform
 - Change the service password
 - Use whitelists to restrict access to your databases. 
 
-For more information, see [Settings](./dashboard-settings.html).
+For more information, see [Settings](/docs/services/ComposeForRedis?topic=compose-for-redis-dashboard-settings).
 
-{{site.data.keyword.composeForRedis}} relies on Cloud Foundry roles to manage access to the service. Only users with the Developer role can see or use the service dashboard. For more information about Cloud Foundry roles, see the [Cloud Foundry access](https://{DomainName}/docs/iam/cfaccess.html#cfaccess) and the [Managing Cloud Foundry access](https://{DomainName}/docs/iam/mngcf.html#mngcf) pages.
+{{site.data.keyword.composeForRedis}} relies on Cloud Foundry roles to manage access to the service. Only users with the Developer role can see or use the service dashboard. For more information about Cloud Foundry roles, see the [Cloud Foundry access](/docs/iam?topic=iam-cfaccess) and the [Managing Cloud Foundry access](/docs/iam?topic=iam-mngcf) pages.
 {: tip}
 
 ## Connecting to {{site.data.keyword.composeForRedis}}
@@ -48,8 +48,8 @@ You can connect to your service by using the credentials that are created along 
 
 ## Connecting an {{site.data.keyword.cloud_notm}} application to {{site.data.keyword.composeForRedis}}
 
-To connect an {{site.data.keyword.cloud_notm}} application to your service, use the credentials that are created along with the service. You can find information on how to connect an {{site.data.keyword.cloud_notm}} application to a {{site.data.keyword.composeForRedis}} service in [Connecting an {{site.data.keyword.cloud_notm}} Application](./connecting-bluemix-app.html).
+To connect an {{site.data.keyword.cloud_notm}} application to your service, use the credentials that are created along with the service. You can find information on how to connect an {{site.data.keyword.cloud_notm}} application to a {{site.data.keyword.composeForRedis}} service in [Connecting an {{site.data.keyword.cloud_notm}} Application](/docs/services/ComposeForRedis?topic=compose-for-redis-ibmcloud-cf-app).
 
 ## Connecting to {{site.data.keyword.composeForRedis}} from outside {{site.data.keyword.cloud_notm}}
 
-If you want to connect to {{site.data.keyword.composeForRedis}} from outside {{site.data.keyword.cloud_notm}}, you can use the provided connection strings or command line. You can find information on how to connect in [Connecting an external application](./connecting-external.html).
+If you want to connect to {{site.data.keyword.composeForRedis}} from outside {{site.data.keyword.cloud_notm}}, you can use the provided connection strings or command line. You can find information on how to connect in [Connecting an external application](/docs/services/ComposeForRedis?topic=compose-for-redis-external-app).

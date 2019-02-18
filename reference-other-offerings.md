@@ -22,7 +22,7 @@ More useful database-related information is in the [Compose Articles](https://ww
 
 ## {{site.data.keyword.cloud_notm}} Enterprise
 
-{{site.data.keyword.cloud_notm}} Enterprise provides a private, dedicated, and isolated cluster for customers. To use this plan, a {{site.data.keyword.composeEnterprise}} cluster must be provisioned through the {{site.data.keyword.composeEnterprise_full_notm}} service in the [IBM Cloud catalog](https://{DomainName}.net/catalog/).
+{{site.data.keyword.cloud_notm}} Enterprise provides a private, dedicated, and isolated cluster for customers. To use this plan, a {{site.data.keyword.composeEnterprise}} cluster must be provisioned through the {{site.data.keyword.composeEnterprise_full_notm}} service in the [IBM Cloud catalog](https://{DomainName}/catalog/).
 
 Once you have a {{site.data.keyword.composeEnterprise}} cluster, selecting the {{site.data.keyword.composeForRedis}} service with the Enterprise plan provisions the service onto your dedicated cluster. 
 

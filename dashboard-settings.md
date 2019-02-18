@@ -13,6 +13,7 @@ lastupdated: "2017-11-20"
 {:tip: .tip}
 
 # Settings
+{: #dashboard-settings}
 
 Use these features to adapt your {{site.data.keyword.composeForRedis_full}} service to better suit your needs and requirements.
 
@@ -52,7 +53,7 @@ A new, randomly generated password is displayed, or you can type your own passwo
 
 Changing the password invalidates the existing connection string, and generates a new one. This causes a service interruption until connected applications are updated with the new connection string.
 
-For more information about connecting your applications, see [Connecting an {{site.data.keyword.cloud}} Application](./connecting-bluemix-app.html), and [Connecting an external application](./connecting-external.html).
+For more information about connecting your applications, see [Connecting an {{site.data.keyword.cloud}} Application](/docs/services/ComposeForRedis?topic=compose-for-redis-ibmcloud-cf-app), and [Connecting an external application](/docs/services/ComposeForRedis?topic=compose-for-redis-connecting-external-app).
 
 
 ## Using Whitelists

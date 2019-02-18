@@ -12,6 +12,7 @@ lastupdated: "2018-15-07"
 {:pre: .pre}
 
 # Service Overview
+{: #dashboard-overview}
 
 The _Overview_ page shows you information about your {{site.data.keyword.cloud}} Compose database. The overview includes essential identifying information and current resource usage. You'll also find a section for connection strings that you can use to connect to your database.
 
@@ -23,7 +24,7 @@ The _Deployment Details_ panel shows details of your service.
 
 ### Type
 
-The type of database that is offered by the service, and the database version that your service uses. If a more recent database version is available, a notification is displayed, and a link to the [Upgrade version](/docs/services/ComposeForRedis/dashboard-settings.html#upgrade-version) section of your service dashboard.
+The type of database that is offered by the service, and the database version that your service uses. If a more recent database version is available, a notification is displayed, and a link to the [Upgrade version](/docs/services/ComposeForRedis?topic=compose-for-redis-dashboard-settings) section of your service dashboard.
 
 ### ID
 
@@ -43,13 +44,13 @@ You can connect an external application to your database in two ways. You can ei
 
 ### HTTPS
 
-The **HTTPS** connection string can be used by some client libraries and contains all the information that is needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](./connecting-external.html).
+The **HTTPS** connection string can be used by some client libraries and contains all the information that is needed for other libraries to connect. You can find out how to use the connection string to connect in [Connecting an external application](/docs/services/ComposeForRedis?topic=compose-for-redis-external-app).
 
 **Note:** If you _un_checked the TLS/SSL-enabled box when the service was provisioned, this connection is **not** TLS/SSL secured. 
 
 ### Command Line
 
-The **Command Line** is a preformatted command that invokes `redis-cli` with the correct parameters. To use it, you need to install Redis client tools on the local system. You can find out more about using the command in [Connecting an external application](./connecting-external.html).
+The **Command Line** is a preformatted command that invokes `redis-cli` with the correct parameters. To use it, you need to install Redis client tools on the local system. You can find out more about using the command in [Connecting an external application](/docs/services/ComposeForRedis?topic=compose-for-redis-external-app).
 
 ## Instance Administration API
 
