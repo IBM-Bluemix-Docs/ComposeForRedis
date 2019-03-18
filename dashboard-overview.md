@@ -3,6 +3,9 @@
 Copyright:
   years: 2017,2018
 lastupdated: "2018-15-07"
+
+subcollection: compose-for-redis
+
 ---
 
 {:new_window: target="_blank"}
