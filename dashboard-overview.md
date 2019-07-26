@@ -4,6 +4,8 @@ Copyright:
   years: 2017,2018
 lastupdated: "2018-15-07"
 
+keywords: redis, compose
+
 subcollection: compose-for-redis
 
 ---
