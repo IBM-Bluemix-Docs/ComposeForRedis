@@ -32,7 +32,7 @@ Choose a service name, and a region, organization, and space to provision the se
 
 There is a drop-down to select TLS/SSL encryption. It is set to **True** encryption by default. If you select False,** then the service is provisioned without encryption. This can be used when your drivers do not handle encryption and you are aware of the potential risks of unencrypted traffic. 
 
-When you provision your {{site.data.keyword.composeForRedis}} instance, you can choose the *Standard* or *Enterprise* plans. With the *Enterprise* plan, you can provision your {{site.data.keyword.composeForRedis}} instance into an available {{site.data.keyword.composeEnterprise}} cluster. {{site.data.keyword.composeEnterprise}} provides the security and isolation that is required by enterprise compliance and uses dedicated networking to ensure the performance of the deployed databases. See the [{{site.data.keyword.composeEnterprise}} documentation](/docs/services/ComposeEnterprise/index.html) for more details.
+When you provision your {{site.data.keyword.composeForRedis}} instance, you can choose the *Standard* or *Enterprise* plans. With the *Enterprise* plan, you can provision your {{site.data.keyword.composeForRedis}} instance into an available {{site.data.keyword.composeEnterprise}} cluster. {{site.data.keyword.composeEnterprise}} provides the security and isolation that is required by enterprise compliance and uses dedicated networking to ensure the performance of the deployed databases. See the [{{site.data.keyword.composeEnterprise}} documentation](/docs/services/ComposeEnterprise?topic=compose-enterprise-about) for more details.
 
 ## Managing {{site.data.keyword.composeForRedis}}
 
