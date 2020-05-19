@@ -6,7 +6,7 @@ lastupdated: "2019-07-31"
 
 keywords: redis, compose
 
-subcollection: compose-for-redis
+subcollection: ComposeForRedis
 
 ---
 

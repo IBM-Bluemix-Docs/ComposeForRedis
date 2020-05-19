@@ -4,7 +4,7 @@ copyright:
   years: 2016,2020
 lastupdated: "2020-04-15"
 
-subcollection: compose-for-redis
+subcollection: ComposeForRedis
 
 ---
 
@@ -171,7 +171,7 @@ npm start
 
 The app is now running at [http://localhost:8080](http://localhost:8080). You can add words and definitions to your {{site.data.keyword.composeForRedis}} database. When you stop and restart the app, any words you already added are displayed when you refresh the page.
 
-For information about the credentials you created for the application to connect to your service, see [Available Credentials](/docs/ComposeForRedis?topic=compose-for-redis-ibmcloud-cf-app).
+For information about the credentials you created for the application to connect to your service, see [Available Credentials](/docs/ComposeForRedis?topic=ComposeForRedis-ibmcloud-cf-app).
 
 ## Next steps
 
@@ -179,8 +179,8 @@ To understand more about how the [sample app](https://github.com/IBM-Cloud/compo
 
 To start exploring your {{site.data.keyword.composeForRedis}} service, see the following topics about the service dashboard:
 
-- [Dashboard Overview](/docs/ComposeForRedis?topic=compose-for-redis-dashboard-overview)
-- [Backups](/docs/ComposeForRedis?topic=compose-for-redis-dashboard-backups)
-- [Settings](/docs/ComposeForRedis?topic=compose-for-redis-dashboard-settings)
+- [Dashboard Overview](/docs/ComposeForRedis?topic=ComposeForRedis-dashboard-overview)
+- [Backups](/docs/ComposeForRedis?topic=ComposeForRedis-dashboard-backups)
+- [Settings](/docs/ComposeForRedis?topic=ComposeForRedis-dashboard-settings)
 
 [ibm_cloud_signup_url]: https://ibm.biz/compose-for-redis-signup

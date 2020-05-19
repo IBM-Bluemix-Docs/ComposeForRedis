@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="compose-for-redis" audience="service" category="databases" href="/docs/ComposeForRedis?topic=compose-for-redis-about" path="ComposeForRedis"}
+{: .toc subcollection="ComposeForRedis" audience="service" category="databases" href="/docs/ComposeForRedis?topic=ComposeForRedis-about" path="ComposeForRedis"}
 Compose For Redis
 
 	{: .navgroup id="learn"}

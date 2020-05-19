@@ -5,7 +5,7 @@ lastupdated: "2018-06-13"
 
 keywords: redis, compose
 
-subcollection: compose-for-redis
+subcollection: ComposeForRedis
 
 ---
 
@@ -31,7 +31,7 @@ The two portals to allow for applications to maintain connectivity should one of
 
 ## Encryption in Transit
 
-At provision, you have the option of enabling TLS/SSL backed by a Let's Encrypt certificate on your {{site.data.keyword.composeForRedis}} HAProxy portals. TLS/SSL encryption is not native to Redis. Most drivers can handle encrypted connections, but the redis-cli and some drivers do not without extra configuration. Whether you enable TLS/SSL depends on your specific use case. For more information, see the [Connecting an external application](/docs/ComposeForRedis?topic=compose-for-redis-external-app) page.
+At provision, you have the option of enabling TLS/SSL backed by a Let's Encrypt certificate on your {{site.data.keyword.composeForRedis}} HAProxy portals. TLS/SSL encryption is not native to Redis. Most drivers can handle encrypted connections, but the redis-cli and some drivers do not without extra configuration. Whether you enable TLS/SSL depends on your specific use case. For more information, see the [Connecting an external application](/docs/ComposeForRedis?topic=ComposeForRedis-external-app) page.
 
 ## Connection Limits
 

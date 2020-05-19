@@ -6,7 +6,7 @@ lastupdated: "2017-11-20"
 
 keywords: redis, compose
 
-subcollection: compose-for-redis
+subcollection: ComposeForRedis
 
 ---
 
@@ -58,7 +58,7 @@ A new, randomly generated password is displayed, or you can type your own passwo
 
 Changing the password invalidates the existing connection string, and generates a new one. This causes a service interruption until connected applications are updated with the new connection string.
 
-For more information about connecting your applications, see [Connecting an {{site.data.keyword.cloud}} Application](/docs/ComposeForRedis?topic=compose-for-redis-ibmcloud-cf-app), and [Connecting an external application](/docs/ComposeForRedis?topic=compose-for-redis-connecting-external-app).
+For more information about connecting your applications, see [Connecting an {{site.data.keyword.cloud}} Application](/docs/ComposeForRedis?topic=ComposeForRedis-ibmcloud-cf-app), and [Connecting an external application](/docs/ComposeForRedis?topic=ComposeForRedis-connecting-external-app).
 
 
 ## Using Whitelists
