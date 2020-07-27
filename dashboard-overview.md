@@ -2,7 +2,7 @@
 
 Copyright:
   years: 2017,2018
-lastupdated: "2018-15-07"
+lastupdated: "2018-07-15"
 
 keywords: redis, compose
 
